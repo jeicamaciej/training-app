@@ -1,4 +1,4 @@
-package jd.jeicam.trainingapp.exercise;
+package jd.jeicam.trainingapp.set;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -13,18 +13,11 @@ import javax.persistence.Id;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class Exercise {
-
+public class Sets {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    private String name;
-
-    //todo:refactor to Set
-    //todo: add tempo
-
-    //@ElementCollection
-    //private List<Integer> sets;
-
+    private int reps;
+    private String comment;
 }
