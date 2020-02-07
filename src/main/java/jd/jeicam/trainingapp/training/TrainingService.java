@@ -1,5 +1,6 @@
 package jd.jeicam.trainingapp.training;
 
+import jd.jeicam.trainingapp.exercise.Exercise;
 import jd.jeicam.trainingapp.exercise.ExerciseRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -36,8 +37,11 @@ public class TrainingService {
         return trainingRepository.findById(id);
     }
 
-//    Boolean addExistingExercise(@NotNull Long trainingId, @NotNull Long exerciseId){
-//         return trainingRepository.findById(trainingId).get().getExercises().add(exerciseRepository.findById(exerciseId).get());
-//    }
-
+    void assignExistingExercise(@NotNull Long trainingId, @NotNull Long exerciseId){
+        Training newTraining = trainingRepository.getOne(trainingId);
+        List<Exercise> newExercises = newTraining.getExercises();
+        newExercises.add(exerciseRepository.getOne(exerciseId));
+        newTraining.setExercises(newExercises);
+        trainingRepository.save(newTraining);
+    }
 }

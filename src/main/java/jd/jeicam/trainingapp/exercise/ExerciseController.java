@@ -1,5 +1,6 @@
 package jd.jeicam.trainingapp.exercise;
 
+import com.fasterxml.jackson.annotation.JsonView;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +18,7 @@ public class ExerciseController {
     //todo:delete method
 
     @GetMapping
+    @JsonView(Exercise.JsonViews.Get.class)
     ResponseEntity<List<Exercise>> getAllExercises(){
         return ResponseEntity.ok(exerciseService.getAllExercises());
     }
