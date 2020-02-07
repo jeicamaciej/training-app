@@ -14,6 +14,7 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "TRAINING")
 public class Training {
 
     @Id
@@ -25,7 +26,13 @@ public class Training {
     @Column
     private Date date;
 
-    @ManyToMany
+    @ManyToMany(cascade = {
+            CascadeType.PERSIST,
+            CascadeType.MERGE
+    })
+    @JoinTable(name = "TRAINING_EXERCISE",
+    joinColumns = @JoinColumn(name = "TRAINING_ID"),
+    inverseJoinColumns = @JoinColumn(name = "EXERCISE_ID"))
     private List<Exercise> exercises;
 
 }

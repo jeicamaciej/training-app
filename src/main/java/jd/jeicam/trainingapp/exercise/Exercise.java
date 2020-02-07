@@ -12,6 +12,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
+@Table(name = "EXERCISE")
 public class Exercise {
 
     @Id
@@ -22,7 +23,7 @@ public class Exercise {
     @Column
     private String name;
 
-    @ManyToMany(mappedBy = "exercise")
+    @ManyToMany(mappedBy = "exercises")
     private List<Training> trainings;
 
 }
