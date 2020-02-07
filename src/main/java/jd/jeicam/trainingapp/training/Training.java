@@ -18,12 +18,14 @@ public class Training {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column
     private Long id;
 
     @JsonFormat(pattern = "yyyy-MM-dd")
+    @Column
     private Date date;
 
-    @OneToMany
+    @ManyToMany
     private List<Exercise> exercises;
 
 }

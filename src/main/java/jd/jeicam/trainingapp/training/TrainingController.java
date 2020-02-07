@@ -15,22 +15,32 @@ public class TrainingController {
     private TrainingService trainingService;
 
     @PostMapping
-    ResponseEntity<Training> addTraining(@RequestBody Training training){
+    ResponseEntity<Training> addTraining(@RequestBody Training training) {
         return ResponseEntity.status(HttpStatus.CREATED).body(trainingService.addTraining(training));
     }
 
     @DeleteMapping("/{id}")
-    ResponseEntity<Boolean> deleteBook(@PathVariable Long id){
+    ResponseEntity<Boolean> deleteBook(@PathVariable Long id) {
         if (trainingService.deleteTraining(id)) {
             return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
-        }
-        else{
+        } else {
             return ResponseEntity.status(HttpStatus.CONFLICT).build();
         }
     }
 
     @GetMapping()
-    ResponseEntity<List<Training>> getTrainings(){
+    ResponseEntity<List<Training>> getTrainings() {
         return ResponseEntity.ok(trainingService.getTrainings());
     }
+
+    @GetMapping("/{id}")
+    ResponseEntity<Training> getTraining(@PathVariable Long id) {
+        return trainingService.getTraining(id).map(ResponseEntity::ok).
+                orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    }
+
+//    @PostMapping("/{trainingId}/add/{exerciseId}")
+//    Boolean addExistingExercise(@PathVariable Long trainingId, @PathVariable Long exerciseId) {
+//        return trainingService.addExistingExercise(trainingId,exerciseId);
+//    }
 }

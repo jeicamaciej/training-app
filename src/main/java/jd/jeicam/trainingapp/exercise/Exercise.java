@@ -1,13 +1,12 @@
 package jd.jeicam.trainingapp.exercise;
 
+import jd.jeicam.trainingapp.training.Training;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @AllArgsConstructor
@@ -17,14 +16,13 @@ public class Exercise {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column
     private long id;
 
+    @Column
     private String name;
 
-    //todo:refactor to Set
-    //todo: add tempo
-
-    //@ElementCollection
-    //private List<Integer> sets;
+    @ManyToMany(mappedBy = "exercise")
+    private List<Training> trainings;
 
 }
