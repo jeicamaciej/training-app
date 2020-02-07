@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -22,6 +23,10 @@ public class ExerciseService {
         else{
             return false;
         }
+    }
+
+    Optional<Exercise> getExercise(Long id){
+        return exerciseRepository.findById(id);
     }
 
     List<Exercise> getAllExercises(){

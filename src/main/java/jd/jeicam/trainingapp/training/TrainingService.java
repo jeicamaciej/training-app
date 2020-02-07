@@ -37,11 +37,15 @@ public class TrainingService {
         return trainingRepository.findById(id);
     }
 
+    private List<Exercise> updateExerciseList(Training training, Long exerciseId ){
+        List<Exercise> exercises = training.getExercises();
+        exercises.add(exerciseRepository.findById(exerciseId).get());
+        return exercises;
+    }
+
     void assignExistingExercise(@NotNull Long trainingId, @NotNull Long exerciseId){
-        Training newTraining = trainingRepository.getOne(trainingId);
-        List<Exercise> newExercises = newTraining.getExercises();
-        newExercises.add(exerciseRepository.getOne(exerciseId));
-        newTraining.setExercises(newExercises);
+        Training newTraining = trainingRepository.findById(trainingId).get();
+        newTraining.setExercises(updateExerciseList(newTraining, exerciseId));
         trainingRepository.save(newTraining);
     }
 }
