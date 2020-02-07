@@ -39,12 +39,12 @@ public class TrainingService {
 
     private List<Exercise> updateExerciseList(Training training, Long exerciseId ){
         List<Exercise> exercises = training.getExercises();
-        exercises.add(exerciseRepository.findById(exerciseId).get());
+        exercises.add(exerciseRepository.getOne(exerciseId));
         return exercises;
     }
 
     void assignExistingExercise(@NotNull Long trainingId, @NotNull Long exerciseId){
-        Training newTraining = trainingRepository.findById(trainingId).get();
+        Training newTraining = trainingRepository.getOne(trainingId);
         newTraining.setExercises(updateExerciseList(newTraining, exerciseId));
         trainingRepository.save(newTraining);
     }
