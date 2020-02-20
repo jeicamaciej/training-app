@@ -1,6 +1,7 @@
 package jd.jeicam.trainingapp.exercise;
 
 import com.fasterxml.jackson.annotation.JsonView;
+import jd.jeicam.trainingapp.set.Series;
 import jd.jeicam.trainingapp.training.Training;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -17,11 +18,11 @@ import java.util.List;
 public class Exercise {
 
     public interface JsonViews {
-        interface Get {
+        interface Get extends Series.JsonViews.Get{
 
         }
 
-        interface GetExtended extends Get, Training.JsonViews.Get {
+        interface GetExtended extends Get, Training.JsonViews.Get, Series.JsonViews.Get {
 
         }
     }
@@ -39,5 +40,10 @@ public class Exercise {
     @ManyToMany(mappedBy = "exercises")
     @JsonView(JsonViews.GetExtended.class)
     private List<Training> trainings;
+
+
+    @OneToMany(mappedBy = "exercise")
+    @JsonView(JsonViews.Get.class)
+    private List<Series> series;
 
 }

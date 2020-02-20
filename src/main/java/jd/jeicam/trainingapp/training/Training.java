@@ -49,5 +49,4 @@ public class Training {
             inverseJoinColumns = @JoinColumn(name = "EXERCISE_ID"))
     @JsonView(JsonViews.GetExtended.class)
     private List<Exercise> exercises;
-
 }

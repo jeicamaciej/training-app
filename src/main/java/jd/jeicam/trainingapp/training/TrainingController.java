@@ -44,6 +44,6 @@ public class TrainingController {
 
     @PostMapping("/{trainingId}/add/{exerciseId}")
     void assignExistingExercise(@PathVariable Long trainingId, @PathVariable Long exerciseId) {
-        trainingService.assignExistingExercise(trainingId,exerciseId);
+        trainingService.addExerciseToTraining(trainingId,exerciseId);
     }
 }
