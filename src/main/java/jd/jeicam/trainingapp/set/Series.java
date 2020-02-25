@@ -12,22 +12,29 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
+@Table(name = "SERIES")
 public class Series {
 
-    public interface JsonViews{
-        interface Get{}
-        interface GetExtended extends Get{}
+    public interface JsonViews {
+        interface Get {
+        }
+
+        interface GetExtended extends Get {
+        }
     }
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @JsonView(JsonViews.Get.class)
+    @Column
     private long id;
 
     @JsonView(JsonViews.Get.class)
+    @Column
     private int reps;
 
     @JsonView(JsonViews.GetExtended.class)
+    @Column
     private String comment;
 
     @ManyToOne

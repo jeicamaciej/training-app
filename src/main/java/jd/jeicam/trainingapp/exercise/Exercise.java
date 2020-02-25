@@ -18,7 +18,7 @@ import java.util.List;
 public class Exercise {
 
     public interface JsonViews {
-        interface Get extends Series.JsonViews.Get{
+        interface Get extends Series.JsonViews.Get {
 
         }
 

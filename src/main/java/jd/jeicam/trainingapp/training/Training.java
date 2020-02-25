@@ -40,6 +40,10 @@ public class Training {
     @JsonView(JsonViews.Get.class)
     private Date date;
 
+    @Column
+    @JsonView(JsonViews.Get.class)
+    private String desc;
+
     @ManyToMany(cascade = {
             CascadeType.PERSIST,
             CascadeType.MERGE

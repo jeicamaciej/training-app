@@ -32,13 +32,23 @@ public class TrainingService {
         return trainingRepository.findAll();
     }
 
+//    Training getTraining(@NotNull Long id) {
+//        Optional<Training> trainingOptional = trainingRepository.findById(id);
+//        if(trainingOptional.isPresent()){
+//            return trainingOptional.get();
+//        }
+//        else {
+//            throw new IllegalArgumentException("invalid id value");
+//        }
+//    }
+
     Optional<Training> getTraining(@NotNull Long id){
         return trainingRepository.findById(id);
     }
 
-    void addExerciseToTraining(@NotNull Long trainingId, @NotNull Long exerciseId){
-        Training newTraining = trainingRepository.getOne(trainingId);
-        newTraining.getExercises().add(exerciseRepository.getOne(exerciseId));
-        trainingRepository.save(newTraining);
+    void addExerciseToTraining(@NotNull Long trainingId, @NotNull Long exerciseId) {
+        Training training = trainingRepository.getOne(trainingId);
+        training.getExercises().add(exerciseRepository.getOne(exerciseId));
+        trainingRepository.save(training);
     }
 }

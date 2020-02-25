@@ -14,29 +14,28 @@ public class ExerciseService {
     private ExerciseRepository exerciseRepository;
     private SeriesRepository seriesRepository;
 
-    Exercise addExercise(Exercise newExercise){
+    Exercise addExercise(Exercise newExercise) {
         return exerciseRepository.save(newExercise);
     }
 
-    boolean deleteExercise(Long id){
-        if(exerciseRepository.existsById(id)){
+    boolean deleteExercise(Long id) {
+        if (exerciseRepository.existsById(id)) {
             exerciseRepository.deleteById(id);
             return true;
-        }
-        else{
+        } else {
             return false;
         }
     }
 
-    Exercise getExercise(Long id){
+    Exercise getExercise(Long id) {
         return exerciseRepository.getOne(id);
     }
 
-    List<Exercise> getAllExercises(){
+    List<Exercise> getAllExercises() {
         return exerciseRepository.findAll();
     }
 
-    Series addSeriesToExercise(Long exerciseId, Series series){
+    Series addSeriesToExercise(Long exerciseId, Series series) {
         exerciseRepository.getOne(exerciseId).getSeries().add(series);
         return seriesRepository.save(series);
     }

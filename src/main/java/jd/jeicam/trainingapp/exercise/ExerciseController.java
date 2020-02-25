@@ -16,27 +16,25 @@ public class ExerciseController {
 
     private ExerciseService exerciseService;
 
-    //todo:delete method
-
     @GetMapping
     @JsonView(Exercise.JsonViews.Get.class)
-    ResponseEntity<List<Exercise>> getAllExercises(){
+    ResponseEntity<List<Exercise>> getAllExercises() {
         return ResponseEntity.ok(exerciseService.getAllExercises());
     }
 
     @PostMapping
-    ResponseEntity<Exercise> addExercise(@RequestBody Exercise newExercise){
+    ResponseEntity<Exercise> addExercise(@RequestBody Exercise newExercise) {
         return ResponseEntity.status(HttpStatus.CREATED).body(exerciseService.addExercise(newExercise));
     }
 
     @PostMapping("/{id}/add")
-    ResponseEntity<Series> addSeriesToExercise(@PathVariable Long id,@RequestBody Series series){
-        return ResponseEntity.ok(exerciseService.addSeriesToExercise(id,series));
+    ResponseEntity<Series> addSeriesToExercise(@PathVariable Long id, @RequestBody Series series) {
+        return ResponseEntity.ok(exerciseService.addSeriesToExercise(id, series));
     }
 
     @GetMapping("/{id}")
     @JsonView(Exercise.JsonViews.GetExtended.class)
-    ResponseEntity<Exercise> getExercise(@PathVariable Long id){
+    ResponseEntity<Exercise> getExercise(@PathVariable Long id) {
         return ResponseEntity.ok(exerciseService.getExercise(id));
     }
 

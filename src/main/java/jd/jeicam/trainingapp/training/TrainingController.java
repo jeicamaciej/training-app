@@ -40,10 +40,11 @@ public class TrainingController {
     ResponseEntity<Training> getTraining(@PathVariable Long id) {
         return trainingService.getTraining(id).map(ResponseEntity::ok).
                 orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+        //return ResponseEntity.ok(trainingService.getTraining(id));
     }
 
     @PostMapping("/{trainingId}/add/{exerciseId}")
     void assignExistingExercise(@PathVariable Long trainingId, @PathVariable Long exerciseId) {
-        trainingService.addExerciseToTraining(trainingId,exerciseId);
+        trainingService.addExerciseToTraining(trainingId, exerciseId);
     }
 }
