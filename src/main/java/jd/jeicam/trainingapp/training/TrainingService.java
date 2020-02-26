@@ -1,5 +1,6 @@
 package jd.jeicam.trainingapp.training;
 
+import jd.jeicam.trainingapp.exercise.Exercise;
 import jd.jeicam.trainingapp.exercise.ExerciseRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -32,23 +33,20 @@ public class TrainingService {
         return trainingRepository.findAll();
     }
 
-//    Training getTraining(@NotNull Long id) {
-//        Optional<Training> trainingOptional = trainingRepository.findById(id);
-//        if(trainingOptional.isPresent()){
-//            return trainingOptional.get();
-//        }
-//        else {
-//            throw new IllegalArgumentException("invalid id value");
-//        }
-//    }
-
-    Optional<Training> getTraining(@NotNull Long id){
+    Optional<Training> getTraining(@NotNull Long id) {
         return trainingRepository.findById(id);
     }
 
-    void addExerciseToTraining(@NotNull Long trainingId, @NotNull Long exerciseId) {
-        Training training = trainingRepository.getOne(trainingId);
-        training.getExercises().add(exerciseRepository.getOne(exerciseId));
-        trainingRepository.save(training);
+    boolean addExerciseToTraining(@NotNull Long trainingId, @NotNull Long exerciseId) {
+
+        Optional<Training> training = trainingRepository.findById(trainingId);
+        Optional<Exercise> exercise = exerciseRepository.findById(exerciseId);
+
+        if (training.isPresent() && exercise.isPresent()) {
+            training.get().getExercises().add(exercise.get());
+            trainingRepository.save(training.get());
+            return true;
+        }
+        return false;
     }
 }
