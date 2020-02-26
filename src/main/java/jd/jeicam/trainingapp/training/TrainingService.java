@@ -24,9 +24,8 @@ public class TrainingService {
         if (trainingRepository.existsById(id)) {
             trainingRepository.deleteById(id);
             return true;
-        } else {
-            return false;
         }
+        return false;
     }
 
     List<Training> getTrainings() {
@@ -38,7 +37,6 @@ public class TrainingService {
     }
 
     boolean addExerciseToTraining(@NotNull Long trainingId, @NotNull Long exerciseId) {
-
         Optional<Training> training = trainingRepository.findById(trainingId);
         Optional<Exercise> exercise = exerciseRepository.findById(exerciseId);
 
