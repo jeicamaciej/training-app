@@ -41,7 +41,6 @@ public class Exercise {
     @JsonView(JsonViews.GetExtended.class)
     private List<Training> trainings;
 
-
     @OneToMany(mappedBy = "exercise")
     @JsonView(JsonViews.Get.class)
     private List<Series> series;

@@ -11,6 +11,7 @@ import java.util.List;
 @RestController
 @RequestMapping(path = "/api/training")
 @AllArgsConstructor
+@CrossOrigin(origins = "http://localhost:4200")
 public class TrainingController {
 
     private TrainingService trainingService;
@@ -29,7 +30,7 @@ public class TrainingController {
         }
     }
 
-    @GetMapping()
+    @GetMapping("/all")
     @JsonView(Training.JsonViews.Get.class)
     ResponseEntity<List<Training>> getTrainings() {
         return ResponseEntity.ok(trainingService.getTrainings());
