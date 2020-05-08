@@ -9,13 +9,13 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.Date;
-import java.util.List;
+import java.util.Set;
 
 @Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "TRAINING")
+@Table(name = "TRAININGAPP_TRAINING")
 public class Training {
 
     public interface JsonViews {
@@ -28,29 +28,27 @@ public class Training {
         }
     }
 
-
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @JsonView(JsonViews.Get.class)
     private Long id;
 
     @JsonFormat(pattern = "yyyy-MM-dd")
-    @Column
     @JsonView(JsonViews.Get.class)
+    @Column(name = "TRAINING_DATE")
     private Date date;
 
-    @Column
     @JsonView(JsonViews.Get.class)
+    @Column(name = "DESCRIPTION")
     private String desc;
 
-    @ManyToMany(cascade = {
-            CascadeType.PERSIST,
-            CascadeType.MERGE
-    })
-    @JoinTable(name = "TRAINING_EXERCISE",
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name =  "TRAININGAPP_TRAINING_EXERCISE",
             joinColumns = @JoinColumn(name = "TRAINING_ID"),
-            inverseJoinColumns = @JoinColumn(name = "EXERCISE_ID"))
-    @JsonView(JsonViews.GetExtended.class)
-    private List<Exercise> exercises;
+            inverseJoinColumns = @JoinColumn(name = "EXERCISE_ID")
+    )
+    private Set<Exercise> exercises;
+
+
 }
+

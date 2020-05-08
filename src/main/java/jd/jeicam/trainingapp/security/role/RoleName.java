@@ -1,4 +1,4 @@
-package jd.jeicam.trainingapp.security.user;
+package jd.jeicam.trainingapp.security.role;
 
 public enum RoleName {
     ROLE_USER,

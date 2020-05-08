@@ -8,9 +8,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
@@ -132,7 +130,7 @@ public class TrainingServiceTest {
 
         training.setId(trainingId);
         exercise.setId(exerciseId);
-        List<Exercise> exercises = new ArrayList<>();
+        Set<Exercise> exercises = new HashSet<>();
         training.setExercises(exercises);
 
         when(trainingRepository.findById(trainingId)).thenReturn(Optional.of(training));

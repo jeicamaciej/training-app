@@ -12,7 +12,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-@Table(name = "SERIES")
+@Table(name = "TRAININGAPP_SERIES")
 public class Series {
 
     public interface JsonViews {

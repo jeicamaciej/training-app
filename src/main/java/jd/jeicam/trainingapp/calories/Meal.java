@@ -11,7 +11,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-@Table(name = "MEAL")
+@Table(name = "TRAININGAPP_MEAL")
 public class Meal {
     @Id
     private long id;

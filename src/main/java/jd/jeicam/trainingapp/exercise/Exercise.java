@@ -14,7 +14,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-@Table(name = "EXERCISE")
+@Table(name = "TRAININGAPP_EXERCISE")
 public class Exercise {
 
     public interface JsonViews {

@@ -3,18 +3,19 @@ package jd.jeicam.trainingapp;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
+import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
 import org.springframework.data.convert.Jsr310Converters;
 
 import javax.annotation.PostConstruct;
 import java.sql.Time;
 import java.util.TimeZone;
 
+
 @SpringBootApplication
 @EntityScan(basePackageClasses = {
 		TrainingAppApplication.class,
 		Jsr310Converters.class
 })
-
 public class TrainingAppApplication {
 
 	@PostConstruct
