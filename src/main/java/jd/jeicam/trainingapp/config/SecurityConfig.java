@@ -3,9 +3,12 @@ package jd.jeicam.trainingapp.config;
 import jd.jeicam.trainingapp.security.jwt.JwtAuthenticationEntryPoint;
 import jd.jeicam.trainingapp.security.jwt.JwtAuthenticationFilter;
 import jd.jeicam.trainingapp.security.user.CustomUserDetailsService;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.BeanIds;
@@ -25,16 +28,17 @@ import javax.annotation.Resource;
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(
-        securedEnabled = true,
-        jsr250Enabled = true,
+        //securedEnabled = true,
+        //jsr250Enabled = true,
         prePostEnabled = true
 )
+@AllArgsConstructor
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Resource
     CustomUserDetailsService customUserDetailsService;
 
-    private JwtAuthenticationEntryPoint unauthorizedHandler;
+    JwtAuthenticationEntryPoint unauthorizedHandler;
 
     @Bean
     public JwtAuthenticationFilter jwtAuthenticationFilter(){
@@ -84,6 +88,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/**/*.js")
                 .permitAll()
                 .antMatchers("/api/auth/**")
+                .permitAll()
+                .antMatchers("/api/auth/signin")
                 .permitAll()
                 .antMatchers("/api/user/checkUsernameAvailability", "/api/user/checkEmailAvailability")
                 .permitAll()

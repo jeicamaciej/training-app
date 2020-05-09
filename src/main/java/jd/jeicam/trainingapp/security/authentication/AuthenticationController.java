@@ -35,20 +35,11 @@ public class AuthenticationController {
     PasswordEncoder passwordEncoder;
     JwtTokenProvider tokenProvider;
 
+    AuthenticationService authenticationService;
+
     @PostMapping("/signin")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
-
-        org.springframework.security.core.Authentication authentication = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(
-                        loginRequest.getUsernameOrEmail(),
-                        loginRequest.getPassword()
-                )
-        );
-
-        SecurityContextHolder.getContext().setAuthentication(authentication);
-
-        String jwt = tokenProvider.generateToken(authentication);
-        return ResponseEntity.ok(new JwtAuthenticationResponse(jwt));
+        return ResponseEntity.ok(authenticationService.getToken(loginRequest));
     }
 
     @PostMapping("/signup")
