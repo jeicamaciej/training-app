@@ -1,6 +1,4 @@
 package jd.jeicam.trainingapp.security.authentication;
-
-import jd.jeicam.trainingapp.security.jwt.JwtAuthenticationResponse;
 import jd.jeicam.trainingapp.security.jwt.JwtTokenProvider;
 import jd.jeicam.trainingapp.security.request.ApiResponse;
 import jd.jeicam.trainingapp.security.request.LoginRequest;
@@ -14,8 +12,6 @@ import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;

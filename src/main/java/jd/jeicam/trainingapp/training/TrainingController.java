@@ -9,26 +9,12 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "/api/training")
+@RequestMapping("/api/training")
 @AllArgsConstructor
 @CrossOrigin(origins = "http://localhost:4200")
 public class TrainingController {
 
     private TrainingService trainingService;
-
-    @PostMapping
-    ResponseEntity<Training> addTraining(@RequestBody Training training) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(trainingService.addTraining(training));
-    }
-
-    @DeleteMapping("/{id}")
-    ResponseEntity<Boolean> deleteBook(@PathVariable Long id) {
-        if (trainingService.deleteTraining(id)) {
-            return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
-        } else {
-            return ResponseEntity.status(HttpStatus.CONFLICT).build();
-        }
-    }
 
     @GetMapping("/all")
     @JsonView(Training.JsonViews.Get.class)
@@ -43,11 +29,9 @@ public class TrainingController {
                 orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
-    @PostMapping("/{trainingId}/add/{exerciseId}")
-    ResponseEntity<Boolean> addExerciseToTraining(@PathVariable Long trainingId, @PathVariable Long exerciseId) {
-        if (trainingService.addExerciseToTraining(trainingId, exerciseId)) {
-            return ResponseEntity.status(HttpStatus.OK).build();
-        }
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+    @PostMapping("/new/{dayId}")
+    @JsonView(Training.JsonViews.GetExtended.class)
+    ResponseEntity<Training> addNewTraining(@PathVariable Long dayId){
+        return ResponseEntity.ok(trainingService.addNewTraining(dayId));
     }
 }

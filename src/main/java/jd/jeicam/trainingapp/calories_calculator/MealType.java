@@ -1,4 +1,4 @@
-package jd.jeicam.trainingapp.calories;
+package jd.jeicam.trainingapp.calories_calculator;
 
 public enum MealType {
     BREAKFAST,

@@ -1,5 +1,6 @@
-package jd.jeicam.trainingapp.calories;
+package jd.jeicam.trainingapp.calories_calculator;
 
+import jd.jeicam.trainingapp.day.Day;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -25,4 +26,7 @@ public class Meal {
     @Enumerated(EnumType.STRING)
     @NaturalId
     private MealType mealType;
+
+    @ManyToOne
+    private Day day;
 }
