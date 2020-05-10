@@ -2,8 +2,7 @@ package jd.jeicam.trainingapp.day;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonView;
-import jd.jeicam.trainingapp.calories_calculator.Meal;
-import jd.jeicam.trainingapp.security.user.User;
+import jd.jeicam.trainingapp.user.User;
 import jd.jeicam.trainingapp.set.Series;
 import jd.jeicam.trainingapp.training.Training;
 import lombok.*;

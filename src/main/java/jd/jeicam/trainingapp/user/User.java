@@ -1,4 +1,4 @@
-package jd.jeicam.trainingapp.security.user;
+package jd.jeicam.trainingapp.user;
 
 import jd.jeicam.trainingapp.day.Day;
 import jd.jeicam.trainingapp.exercise.Exercise;

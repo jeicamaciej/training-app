@@ -1,7 +1,7 @@
 package jd.jeicam.trainingapp.exercise;
 
 import com.fasterxml.jackson.annotation.JsonView;
-import jd.jeicam.trainingapp.security.user.User;
+import jd.jeicam.trainingapp.user.User;
 import jd.jeicam.trainingapp.set.Series;
 import jd.jeicam.trainingapp.training.Training;
 import lombok.AllArgsConstructor;
@@ -20,11 +20,9 @@ public class Exercise {
 
     public interface JsonViews {
         interface Get extends Series.JsonViews.Get {
-
         }
 
         interface GetExtended extends Get, Training.JsonViews.Get, Series.JsonViews.Get {
-
         }
     }
 

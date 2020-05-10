@@ -1,4 +1,4 @@
-package jd.jeicam.trainingapp.security.user;
+package jd.jeicam.trainingapp.user;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

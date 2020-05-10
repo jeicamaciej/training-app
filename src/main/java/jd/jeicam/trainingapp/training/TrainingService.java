@@ -35,7 +35,7 @@ public class TrainingService {
         if(!trainingRepository.existsById(trainingId) || !exerciseRepository.existsById(exerciseId)){
             throw new IllegalArgumentException("training or exercise not present");
         }
-        
+
         Training training = trainingRepository.getOne(trainingId);
         Exercise exercise = exerciseRepository.getOne(exerciseId);
 
@@ -48,4 +48,6 @@ public class TrainingService {
         exerciseRepository.save(exercise);
         return trainingRepository.save(training);
     }
+
+
 }

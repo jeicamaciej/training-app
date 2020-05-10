@@ -1,20 +1,15 @@
 package jd.jeicam.trainingapp.training;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonView;
 import jd.jeicam.trainingapp.day.Day;
 import jd.jeicam.trainingapp.exercise.Exercise;
-import jd.jeicam.trainingapp.security.user.User;
-import jd.jeicam.trainingapp.set.Series;
+import jd.jeicam.trainingapp.user.User;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Data
