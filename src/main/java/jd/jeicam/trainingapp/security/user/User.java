@@ -1,6 +1,10 @@
 package jd.jeicam.trainingapp.security.user;
 
+import jd.jeicam.trainingapp.day.Day;
+import jd.jeicam.trainingapp.exercise.Exercise;
 import jd.jeicam.trainingapp.security.role.Role;
+import jd.jeicam.trainingapp.set.Series;
+import jd.jeicam.trainingapp.training.Training;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -9,6 +13,7 @@ import org.hibernate.annotations.NaturalId;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -51,6 +56,16 @@ public class User {
         inverseJoinColumns = @JoinColumn(name = "ROLE_ID")
     )
     private Set<Role> roles;
+
+    @OneToMany(mappedBy = "user")
+    private List<Day> days;
+    @OneToMany(mappedBy = "user")
+    private List<Training> trainings;
+    @OneToMany(mappedBy = "user")
+    private List<Exercise> exercises;
+    @OneToMany(mappedBy = "user")
+    private List<Series> series;
+
 
     public User(String name, String username, String email, String password) {
         this.name = name;

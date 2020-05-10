@@ -32,12 +32,6 @@ public class ExerciseController {
         return ResponseEntity.ok(exerciseService.getExercise(id));
     }
 
-    @PostMapping("/{exerciseId}/addSet/{seriesId}")
-    @JsonView(Exercise.JsonViews.GetExtended.class)
-    ResponseEntity<Exercise> addSeriesToExercise(@PathVariable Long seriesId, @PathVariable Long exerciseId) {
-        return ResponseEntity.ok(exerciseService.addSeriesToExercise(seriesId, exerciseId));
-    }
-
     @PostMapping("/{exerciseId}/removeSet/{seriesId}")
     @JsonView(Exercise.JsonViews.GetExtended.class)
     ResponseEntity<Exercise> removeSeriesFromExercise(@PathVariable Long exerciseId, @PathVariable Long seriesId) {

@@ -1,7 +1,9 @@
 package jd.jeicam.trainingapp.set;
 
 import com.fasterxml.jackson.annotation.JsonView;
+import jd.jeicam.trainingapp.day.Day;
 import jd.jeicam.trainingapp.exercise.Exercise;
+import jd.jeicam.trainingapp.security.user.User;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -43,4 +45,8 @@ public class Series {
 
     @JsonView(JsonViews.Get.class)
     private double weight;
+
+    @ManyToOne
+    @JsonView(JsonViews.GetExtended.class)
+    private User user;
 }

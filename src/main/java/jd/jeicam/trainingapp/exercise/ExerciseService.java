@@ -3,8 +3,10 @@ package jd.jeicam.trainingapp.exercise;
 import jd.jeicam.trainingapp.set.Series;
 import jd.jeicam.trainingapp.set.SeriesRepository;
 import lombok.AllArgsConstructor;
+import lombok.SneakyThrows;
 import org.springframework.stereotype.Service;
 
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Service
@@ -14,20 +16,17 @@ public class ExerciseService {
     private ExerciseRepository exerciseRepository;
     private SeriesRepository seriesRepository;
 
-    public Exercise addExercise(Exercise newExercise) {
+    public Exercise addExercise(@NotNull Exercise newExercise) {
         return exerciseRepository.save(newExercise);
     }
 
-    public Exercise modifyExercise(Long exerciseId, String name){
-        if(!exerciseRepository.existsById(exerciseId)){
+    public Exercise modifyExercise(Long exerciseId, @NotNull String name) {
+        if (!exerciseRepository.existsById(exerciseId)) {
             throw new IllegalArgumentException("exercise not present");
         }
-        if (name != null) {
-            Exercise exercise = exerciseRepository.getOne(exerciseId);
-            exercise.setName(name);
-            return exerciseRepository.save(exercise);
-        }
-        throw new IllegalArgumentException("name must not be null");
+        Exercise exercise = exerciseRepository.getOne(exerciseId);
+        exercise.setName(name);
+        return exerciseRepository.save(exercise);
     }
 
     public Exercise removeSeriesFromExercise(Long exerciseId, Long seriesId) {
@@ -35,7 +34,7 @@ public class ExerciseService {
             Exercise exercise = exerciseRepository.getOne(exerciseId);
             Series series = seriesRepository.getOne(seriesId);
 
-            if (exercise.getSeries().contains(series)) {
+            if (exercise.getSeries().contains(series) || series.getExercise().equals(exercise)) {
                 exercise.getSeries().remove(series);
                 series.setExercise(null);
                 seriesRepository.save(series);
@@ -46,19 +45,9 @@ public class ExerciseService {
         throw new IllegalArgumentException("Set or exercise not present");
     }
 
-    public Exercise addSeriesToExercise(Long seriesId, Long exerciseId) {
-        Series series = seriesRepository.getOne(seriesId);
-        Exercise exercise = exerciseRepository.getOne(exerciseId);
-
-        exercise.getSeries().add(series);
-        series.setExercise(exercise);
-
-        seriesRepository.save(series);
-        return exerciseRepository.save(exercise);
-    }
-
+    @SneakyThrows
     Exercise getExercise(Long id) {
-        return exerciseRepository.findById(id).orElseThrow(IllegalArgumentException::new);
+        return exerciseRepository.findById(id).orElseThrow(IllegalAccessException::new);
     }
 
     List<Exercise> getAllExercises() {

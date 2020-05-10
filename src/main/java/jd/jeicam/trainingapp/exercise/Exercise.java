@@ -1,6 +1,7 @@
 package jd.jeicam.trainingapp.exercise;
 
 import com.fasterxml.jackson.annotation.JsonView;
+import jd.jeicam.trainingapp.security.user.User;
 import jd.jeicam.trainingapp.set.Series;
 import jd.jeicam.trainingapp.training.Training;
 import lombok.AllArgsConstructor;
@@ -44,4 +45,9 @@ public class Exercise {
     @OneToMany(mappedBy = "exercise")
     @JsonView(JsonViews.Get.class)
     private List<Series> series;
+
+    @ManyToOne
+    @JsonView(JsonViews.GetExtended.class)
+    private User user;
+
 }

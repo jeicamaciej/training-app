@@ -1,20 +1,24 @@
 package jd.jeicam.trainingapp.day;
-
-import jd.jeicam.trainingapp.training.Training;
-import jd.jeicam.trainingapp.training.TrainingService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-import java.util.ArrayList;
-import java.util.HashSet;
+
+import java.util.List;
 
 @Service
 @AllArgsConstructor
 public class DayService {
 
     private DayRepository dayRepository;
-    private TrainingService trainingService;
 
     public Day addDay(){
         return dayRepository.save(new Day());
+    }
+
+    public List<Day> getAllDays(){
+        return dayRepository.findAll();
+    }
+
+    public Day getDay(Long dayId){
+        return dayRepository.findById(dayId).orElseThrow(IllegalArgumentException::new);
     }
 }

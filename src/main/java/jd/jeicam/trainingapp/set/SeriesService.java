@@ -9,14 +9,15 @@ public class SeriesService {
 
     private SeriesRepository seriesRepository;
 
-    public Series addSeries(int reps, double weight) {
-        Series series = new Series();
-        series.setReps(reps);
-        series.setWeight(weight);
-        return seriesRepository.save(series);
+    public Series addSeries(Series newSeries) {
+        return seriesRepository.save(newSeries);
     }
 
     public Series modifySeries(Long seriesId, Integer reps, Double weight, String comment) {
+        if(!seriesRepository.existsById(seriesId)){
+            throw new IllegalArgumentException("series not present");
+        }
+
         Series series = seriesRepository.getOne(seriesId);
         if (reps != null) {
             series.setReps(reps);
@@ -24,7 +25,7 @@ public class SeriesService {
         if (weight != null) {
             series.setWeight(weight);
         }
-        if (comment != null){
+        if (comment != null) {
             series.setComment(comment);
         }
         return seriesRepository.save(series);

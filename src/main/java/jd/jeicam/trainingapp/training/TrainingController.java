@@ -30,15 +30,9 @@ public class TrainingController {
                 orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
-    @PostMapping("/new/{dayId}")
+    @PostMapping("/new")
     @JsonView(Training.JsonViews.GetExtended.class)
-    ResponseEntity<Training> addNewTraining(@PathVariable Long dayId) {
-        return ResponseEntity.ok(trainingService.addNewTraining(dayId));
-    }
-
-    @PostMapping("/addExercise/{trainingId}/{exerciseId}")
-    @JsonView(Exercise.JsonViews.Get.class)
-    ResponseEntity<Exercise> addExerciseToTraining(@PathVariable Long trainingId, @PathVariable Long exerciseId) {
-        return ResponseEntity.ok(trainingService.addExerciseToTrainign(trainingId, exerciseId));
+    ResponseEntity<Training> addNewTraining(@RequestBody Training training) {
+        return ResponseEntity.ok(trainingService.addNewTraining(training));
     }
 }

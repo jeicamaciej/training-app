@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonView;
 import jd.jeicam.trainingapp.day.Day;
 import jd.jeicam.trainingapp.exercise.Exercise;
+import jd.jeicam.trainingapp.security.user.User;
+import jd.jeicam.trainingapp.set.Series;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -49,6 +51,11 @@ public class Training {
     private List<Exercise> exercises;
 
     @ManyToOne
+    @JsonView(JsonViews.GetExtended.class)
     private Day day;
+
+    @ManyToOne
+    @JsonView(JsonViews.GetExtended.class)
+    private User user;
 }
 

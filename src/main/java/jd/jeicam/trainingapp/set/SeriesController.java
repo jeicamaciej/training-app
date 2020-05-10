@@ -1,6 +1,5 @@
 package jd.jeicam.trainingapp.set;
 
-import jd.jeicam.trainingapp.exercise.Exercise;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,8 +11,8 @@ public class SeriesController {
     private SeriesService seriesService;
 
     @PostMapping("/new")
-    public ResponseEntity<Series> addSeries(@RequestParam(required = true, name = "reps") int reps, @RequestParam(required = false, name = "weight") double weight){
-        return ResponseEntity.ok(seriesService.addSeries(reps, weight));
+    public ResponseEntity<Series> addSeries(@RequestBody Series series){
+        return ResponseEntity.ok(seriesService.addSeries(series));
     }
 
     @PostMapping("/edit/{seriesId}")
