@@ -1,6 +1,7 @@
 package jd.jeicam.trainingapp.training;
 
 import com.fasterxml.jackson.annotation.JsonView;
+import jd.jeicam.trainingapp.exercise.Exercise;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -31,7 +32,13 @@ public class TrainingController {
 
     @PostMapping("/new/{dayId}")
     @JsonView(Training.JsonViews.GetExtended.class)
-    ResponseEntity<Training> addNewTraining(@PathVariable Long dayId){
+    ResponseEntity<Training> addNewTraining(@PathVariable Long dayId) {
         return ResponseEntity.ok(trainingService.addNewTraining(dayId));
+    }
+
+    @PostMapping("/addExercise/{trainingId}/{exerciseId}")
+    @JsonView(Exercise.JsonViews.Get.class)
+    ResponseEntity<Exercise> addExerciseToTraining(@PathVariable Long trainingId, @PathVariable Long exerciseId) {
+        return ResponseEntity.ok(trainingService.addExerciseToTrainign(trainingId, exerciseId));
     }
 }

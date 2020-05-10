@@ -1,7 +1,6 @@
 package jd.jeicam.trainingapp.exercise;
 
 import com.fasterxml.jackson.annotation.JsonView;
-import jd.jeicam.trainingapp.set.Series;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,7 +10,7 @@ import java.util.List;
 
 @AllArgsConstructor
 @RestController
-@RequestMapping(path = "/api/exercise")
+@RequestMapping("/api/exercise")
 public class ExerciseController {
 
     private ExerciseService exerciseService;
@@ -22,20 +21,33 @@ public class ExerciseController {
         return ResponseEntity.ok(exerciseService.getAllExercises());
     }
 
-    @PostMapping
+    @PostMapping("/new")
     ResponseEntity<Exercise> addExercise(@RequestBody Exercise newExercise) {
         return ResponseEntity.status(HttpStatus.CREATED).body(exerciseService.addExercise(newExercise));
-    }
-
-    @PostMapping("/{id}/add")
-    ResponseEntity<Series> addSeriesToExercise(@PathVariable Long id, @RequestBody Series series) {
-        return ResponseEntity.ok(exerciseService.addSeriesToExercise(id, series));
     }
 
     @GetMapping("/{id}")
     @JsonView(Exercise.JsonViews.GetExtended.class)
     ResponseEntity<Exercise> getExercise(@PathVariable Long id) {
         return ResponseEntity.ok(exerciseService.getExercise(id));
+    }
+
+    @PostMapping("/{exerciseId}/addSet/{seriesId}")
+    @JsonView(Exercise.JsonViews.GetExtended.class)
+    ResponseEntity<Exercise> addSeriesToExercise(@PathVariable Long seriesId, @PathVariable Long exerciseId) {
+        return ResponseEntity.ok(exerciseService.addSeriesToExercise(seriesId, exerciseId));
+    }
+
+    @PostMapping("/{exerciseId}/removeSet/{seriesId}")
+    @JsonView(Exercise.JsonViews.GetExtended.class)
+    ResponseEntity<Exercise> removeSeriesFromExercise(@PathVariable Long exerciseId, @PathVariable Long seriesId) {
+        return ResponseEntity.ok(exerciseService.removeSeriesFromExercise(exerciseId, seriesId));
+    }
+
+    @PostMapping("/modify/{exerciseId}")
+    @JsonView(Exercise.JsonViews.GetExtended.class)
+    ResponseEntity<Exercise> modifyExercise(@PathVariable Long exerciseId, @RequestParam String name) {
+        return ResponseEntity.ok(exerciseService.modifyExercise(exerciseId, name));
     }
 
 }

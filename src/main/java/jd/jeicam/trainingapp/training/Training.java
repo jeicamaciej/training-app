@@ -36,11 +36,6 @@ public class Training {
     @JsonView(JsonViews.Get.class)
     private Long id;
 
-//    @JsonFormat(pattern = "yyyy-MM-dd")
-//    @JsonView(JsonViews.Get.class)
-//    @Column(name = "TRAINING_DATE")
-//    private Date date;
-
     @JsonView(JsonViews.Get.class)
     @Column(name = "DESCRIPTION")
     private String desc;

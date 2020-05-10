@@ -2,6 +2,7 @@ package jd.jeicam.trainingapp.training;
 
 import jd.jeicam.trainingapp.day.Day;
 import jd.jeicam.trainingapp.day.DayRepository;
+import jd.jeicam.trainingapp.exercise.Exercise;
 import jd.jeicam.trainingapp.exercise.ExerciseRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -19,7 +20,7 @@ public class TrainingService {
     private ExerciseRepository exerciseRepository;
     private DayRepository dayRepository;
 
-    public Training addNewTraining(Long dayId){
+    public Training addNewTraining(Long dayId) {
         Day day = dayRepository.findById(dayId).orElseThrow(IllegalArgumentException::new);
 
         Training training = new Training();
@@ -30,14 +31,6 @@ public class TrainingService {
         return trainingRepository.save(training);
     }
 
-//    public boolean deleteTraining(@NotNull Long id) {
-//        if (trainingRepository.existsById(id)) {
-//            trainingRepository.deleteById(id);
-//            return true;
-//        }
-//        return false;
-//    }
-
     List<Training> getTrainings() {
         return trainingRepository.findAll();
     }
@@ -46,4 +39,13 @@ public class TrainingService {
         return trainingRepository.findById(id);
     }
 
+    public Exercise addExerciseToTrainign(Long trainingId, Long exerciseId) {
+        Training training = trainingRepository.getOne(trainingId);
+        Exercise exercise = exerciseRepository.getOne(exerciseId);
+        training.getExercises().add(exercise);
+        exercise.getTrainings().add(training);
+        trainingRepository.save(training);
+        exerciseRepository.save(exercise);
+        return exercise;
+    }
 }

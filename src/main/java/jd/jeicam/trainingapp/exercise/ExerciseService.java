@@ -14,30 +14,55 @@ public class ExerciseService {
     private ExerciseRepository exerciseRepository;
     private SeriesRepository seriesRepository;
 
-    Exercise addExercise(Exercise newExercise) {
+    public Exercise addExercise(Exercise newExercise) {
         return exerciseRepository.save(newExercise);
     }
 
-    boolean deleteExercise(Long id) {
-        if (exerciseRepository.existsById(id)) {
-            exerciseRepository.deleteById(id);
-            return true;
-        } else {
-            return false;
+    public Exercise modifyExercise(Long exerciseId, String name){
+        if(!exerciseRepository.existsById(exerciseId)){
+            throw new IllegalArgumentException("exercise not present");
         }
+        if (name != null) {
+            Exercise exercise = exerciseRepository.getOne(exerciseId);
+            exercise.setName(name);
+            return exerciseRepository.save(exercise);
+        }
+        throw new IllegalArgumentException("name must not be null");
+    }
+
+    public Exercise removeSeriesFromExercise(Long exerciseId, Long seriesId) {
+        if (exerciseRepository.existsById(exerciseId) && seriesRepository.existsById(seriesId)) {
+            Exercise exercise = exerciseRepository.getOne(exerciseId);
+            Series series = seriesRepository.getOne(seriesId);
+
+            if (exercise.getSeries().contains(series)) {
+                exercise.getSeries().remove(series);
+                series.setExercise(null);
+                seriesRepository.save(series);
+                return exerciseRepository.save(exercise);
+            }
+            throw new IllegalArgumentException("Set not present");
+        }
+        throw new IllegalArgumentException("Set or exercise not present");
+    }
+
+    public Exercise addSeriesToExercise(Long seriesId, Long exerciseId) {
+        Series series = seriesRepository.getOne(seriesId);
+        Exercise exercise = exerciseRepository.getOne(exerciseId);
+
+        exercise.getSeries().add(series);
+        series.setExercise(exercise);
+
+        seriesRepository.save(series);
+        return exerciseRepository.save(exercise);
     }
 
     Exercise getExercise(Long id) {
-        return exerciseRepository.getOne(id);
+        return exerciseRepository.findById(id).orElseThrow(IllegalArgumentException::new);
     }
 
     List<Exercise> getAllExercises() {
         return exerciseRepository.findAll();
-    }
-
-    Series addSeriesToExercise(Long exerciseId, Series series) {
-        exerciseRepository.getOne(exerciseId).getSeries().add(series);
-        return seriesRepository.save(series);
     }
 
 

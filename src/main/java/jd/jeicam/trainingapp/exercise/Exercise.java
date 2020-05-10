@@ -28,7 +28,7 @@ public class Exercise {
     }
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
     @JsonView(JsonViews.Get.class)
     private long id;
@@ -44,5 +44,4 @@ public class Exercise {
     @OneToMany(mappedBy = "exercise")
     @JsonView(JsonViews.Get.class)
     private List<Series> series;
-
 }

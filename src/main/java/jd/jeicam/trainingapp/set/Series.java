@@ -40,4 +40,7 @@ public class Series {
     @ManyToOne
     @JsonView(JsonViews.GetExtended.class)
     private Exercise exercise;
+
+    @JsonView(JsonViews.Get.class)
+    private double weight;
 }
