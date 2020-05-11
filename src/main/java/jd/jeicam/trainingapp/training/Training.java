@@ -23,7 +23,7 @@ public class Training {
         interface Get {
         }
 
-        interface GetExtended extends Get, Exercise.JsonViews.Get {
+        interface GetExtended extends Get, Exercise.JsonViews.Get, Day.JsonViews.Get, User.JsonViews.Get {
 
         }
     }

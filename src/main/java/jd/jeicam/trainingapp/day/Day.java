@@ -23,7 +23,10 @@ import java.util.List;
 public class Day {
 
     public interface JsonViews {
-        interface Get extends Training.JsonViews.Get {
+        interface Get {
+        }
+        interface GetExtended extends Get{
+
         }
     }
 
@@ -33,7 +36,7 @@ public class Day {
     private long id;
 
     @OneToMany(mappedBy = "day")
-    @JsonView(Series.JsonViews.Get.class)
+    @JsonView(Series.JsonViews.GetExtended.class)
     private List<Training> trainings;
 
 //    @OneToMany(mappedBy = "day")
@@ -45,7 +48,7 @@ public class Day {
     private Date date;
 
     @ManyToOne
-    @JsonView(JsonViews.Get.class)
+    @JsonView(JsonViews.GetExtended.class)
     private User user;
 
     public Day() {

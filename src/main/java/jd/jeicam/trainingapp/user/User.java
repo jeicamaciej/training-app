@@ -1,5 +1,6 @@
 package jd.jeicam.trainingapp.user;
 
+import com.fasterxml.jackson.annotation.JsonView;
 import jd.jeicam.trainingapp.day.Day;
 import jd.jeicam.trainingapp.exercise.Exercise;
 import jd.jeicam.trainingapp.security.role.Role;
@@ -27,10 +28,18 @@ import java.util.Set;
 })
 @NoArgsConstructor
 @Data
+@AllArgsConstructor
 public class User {
+
+    public interface JsonViews{
+        interface Get{}
+
+        interface GetExtended extends Get{}
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JsonView(JsonViews.Get.class)
     private long id;
 
     @NotBlank
@@ -39,6 +48,7 @@ public class User {
 
     @NotBlank
     //@Size(max = 20)
+    @JsonView(JsonViews.Get.class)
     private String username;
 
     @NotBlank
