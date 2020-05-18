@@ -1,7 +1,5 @@
 package jd.jeicam.trainingapp.training;
 
-import jd.jeicam.trainingapp.day.Day;
-import jd.jeicam.trainingapp.day.DayRepository;
 import jd.jeicam.trainingapp.exercise.Exercise;
 import jd.jeicam.trainingapp.exercise.ExerciseRepository;
 import jd.jeicam.trainingapp.user.User;
@@ -10,7 +8,6 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.validation.constraints.NotNull;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
