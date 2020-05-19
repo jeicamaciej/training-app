@@ -31,12 +31,6 @@ class Register extends React.Component {
     this.setState({ password: event.target.value });
   }
 
-  formatResponse(response) {
-    if (response.data.message === true) {
-      this.setState({ message: response.data.message });
-    }
-  }
-
   handleSubmit = (event) => {
     event.preventDefault();
     const { history } = this.props;
@@ -56,7 +50,7 @@ class Register extends React.Component {
       .then((response) => {
         console.log(response);
         this.setState({ message: response.data.message + ", redirecting" });
-        setTimeout(() => history.push("/login"), 2000);
+        setTimeout(() => history.push("/login"), 1500);
       })
       .catch((error) => {
         this.setState({ message: error.response.data.message });

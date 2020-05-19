@@ -6,9 +6,7 @@ import jd.jeicam.trainingapp.exercise.Exercise;
 import jd.jeicam.trainingapp.security.role.Role;
 import jd.jeicam.trainingapp.set.Series;
 import jd.jeicam.trainingapp.training.Training;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.NaturalId;
 
 import javax.persistence.*;
@@ -83,5 +81,7 @@ public class User {
         this.email = email;
         this.password = password;
     }
+
+
 
 }

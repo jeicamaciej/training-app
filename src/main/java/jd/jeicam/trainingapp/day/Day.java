@@ -32,11 +32,11 @@ public class Day {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @JsonView(Series.JsonViews.Get.class)
+    @JsonView(JsonViews.Get.class)
     private long id;
 
     @OneToMany(mappedBy = "day")
-    @JsonView(Series.JsonViews.GetExtended.class)
+    @JsonView(JsonViews.Get.class)
     private List<Training> trainings;
 
 //    @OneToMany(mappedBy = "day")
@@ -44,7 +44,8 @@ public class Day {
 
     @JsonFormat(pattern = "yyyy-MM-dd")
     @NaturalId
-    @JsonView(Series.JsonViews.Get.class)
+    @JsonView(JsonViews.Get.class)
+    @Temporal(TemporalType.DATE)
     private Date date;
 
     @ManyToOne
