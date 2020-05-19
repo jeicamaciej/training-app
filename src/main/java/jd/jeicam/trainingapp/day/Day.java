@@ -31,7 +31,7 @@ public class Day {
     }
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @JsonView(JsonViews.Get.class)
     private long id;
 
@@ -43,7 +43,6 @@ public class Day {
 //    private List<Meal> meals;
 
     @JsonFormat(pattern = "yyyy-MM-dd")
-    @NaturalId
     @JsonView(JsonViews.Get.class)
     @Temporal(TemporalType.DATE)
     private Date date;

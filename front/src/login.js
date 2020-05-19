@@ -1,9 +1,6 @@
 import React from "react";
 import axios from "axios";
 import { Route, Link, BrowserRouter as Router, Switch } from "react-router-dom";
-import Register from "./register";
-import { Redirect } from "react-router-dom";
-import { browserHistory } from "react-router";
 import { withRouter } from "react-router-dom";
 
 class Login extends React.Component {
@@ -28,6 +25,7 @@ class Login extends React.Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
+    const { history } = this.props;
 
     const data = {
       usernameOrEmail: this.state.loginValue,
@@ -42,6 +40,7 @@ class Login extends React.Component {
       localStorage.setItem("usernameOrEmail", this.state.loginValue);
       //console.log(localStorage.getItem("token"));
       //console.log(localStorage.getItem("usernameOrEmail"));
+      setTimeout(() => history.push("/"), 1500);
     });
   };
 

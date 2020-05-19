@@ -29,7 +29,7 @@ public class Training {
     }
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @JsonView(JsonViews.Get.class)
     private Long id;
 
@@ -42,7 +42,7 @@ public class Training {
             joinColumns = @JoinColumn(name = "TRAINING_ID"),
             inverseJoinColumns = @JoinColumn(name = "EXERCISE_ID")
     )
-    @JsonView(JsonViews.GetExtended.class)
+    @JsonView(JsonViews.Get.class)
     private List<Exercise> exercises;
 
     @ManyToOne

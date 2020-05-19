@@ -2,9 +2,12 @@ package jd.jeicam.trainingapp.training;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import lombok.AllArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -21,6 +24,11 @@ public class TrainingController {
         return ResponseEntity.ok(trainingService.getTrainings());
     }
 
+    @PostMapping("/new/{date}")
+    ResponseEntity<Training> addEmptyTraining(@PathVariable @DateTimeFormat(pattern = "yyyy-MM-dd") Date date, String username){
+        return ResponseEntity.ok(trainingService.addEmptyTrainig(date, username));
+    }
+
     @GetMapping("/{id}")
     @JsonView(Training.JsonViews.GetExtended.class)
     ResponseEntity<Training> getTraining(@PathVariable Long id) {
@@ -34,16 +42,16 @@ public class TrainingController {
         return ResponseEntity.ok(trainingService.addNewTraining(training));
     }
 
-    @GetMapping("/all")
-    @JsonView(Training.JsonViews.Get.class)
-    public ResponseEntity<List<Training>> getAllByUsername(String username){
-        return ResponseEntity.ok(trainingService.getAllByUsername(username));
-    }
+//    @GetMapping("/all")
+//    @JsonView(Training.JsonViews.Get.class)
+//    public ResponseEntity<List<Training>> getAllByUsername(String username){
+//        return ResponseEntity.ok(trainingService.getAllByUsername(username));
+//    }
 
-    @GetMapping("/{dayId}/all")
-    @JsonView(Training.JsonViews.GetExtended.class)
-    public ResponseEntity<List<Training>> getAllByUsernameAndDay(String username,@PathVariable Long dayId){
-        return ResponseEntity.ok(trainingService.getAllByUsernameAndDay(username, dayId));
+    @GetMapping("/all/{date}")
+    @JsonView(Training.JsonViews.Get.class)
+    public ResponseEntity<List<Training>> getAllByUsernameAndDay(String username,@PathVariable @DateTimeFormat(pattern = "yyyy-MM-dd")Date date){
+        return ResponseEntity.ok(trainingService.getAllByUsernameAndDay(username, date));
     }
 
 }
