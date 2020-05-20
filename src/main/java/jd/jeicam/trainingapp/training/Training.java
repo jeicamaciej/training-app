@@ -20,7 +20,7 @@ public class Training {
 
     public interface JsonViews {
 
-        interface Get {
+        interface Get extends Exercise.JsonViews.Get{
         }
 
         interface GetExtended extends Get, Exercise.JsonViews.Get, Day.JsonViews.Get, User.JsonViews.Get {
