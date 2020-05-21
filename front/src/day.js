@@ -2,6 +2,8 @@ import React from "react";
 import axios from "axios";
 import { withRouter } from "react-router-dom";
 import TrainingService from "./TrainingService";
+import Training from "./training";
+import TrainingModal from "./trainingModal";
 
 class Day extends React.Component {
   constructor(props) {
@@ -10,7 +12,7 @@ class Day extends React.Component {
       token: localStorage.getItem("token").toString(),
       date: new Date().toISOString().slice(0, 10),
       day: {},
-      trainings: [],
+      trainings: {},
       trainings1: [],
       data: {},
       isDataPresent: false,
@@ -18,9 +20,6 @@ class Day extends React.Component {
   }
 
   getDay = () => {
-    function getDate() {
-      return new Date().toISOString().slice(0, 10);
-    }
     axios({
       method: "get",
       url: "http://localhost:8080/api/day/date/" + this.state.date,
@@ -31,7 +30,7 @@ class Day extends React.Component {
       },
     }).then((response) => {
       const newDay = {
-        trainings: response.data.trainings,
+        trainings: response.data.training,
         date: response.data.date,
       };
       this.setState({ day: newDay });
@@ -52,57 +51,37 @@ class Day extends React.Component {
   };
 
   componentDidMount() {
-    TrainingService.getTrainings(this.state.date, this.state.token).then(
-      (t) => {
-        this.setState({ trainings: t });
-      }
-    );
-  }
-
-  componentWillMount() {
     this.getDay();
-
-    TrainingService.test(this.state.date, this.state.token).then((t) => {
-      this.setState({ trainings1: t });
-      //this.setState(() => ({ isDataPresent: true }));
-    });
+    // TrainingService.getTrainings(this.state.date, this.state.token).then(
+    //   (t) => {
+    //     this.setState({ trainings: t });
+    //   }
+    // );
+    // this.getDay();
+    // TrainingService.test(this.state.date, this.state.token)
+    //   .then((t) => {
+    //     this.setState({ trainings1: t });
+    //     //this.setState(() => ({ isDataPresent: true }));
+    //     console.log(TrainingService.formatResponse(this.state.trainings1));
+    //   })
+    //   .then()
+    //   .catch((error) => console.log(error));
   }
 
   render() {
-    if (this.state.data === false) {
-      return (
-        <div>
-          <div>{this.state.day.date}</div>
-          <br></br>
-          <div>
-            <a>{<ul>{this.state.trainings}</ul>}</a>
-          </div>
-          <br></br>
-          <div>
-            <button onClick={() => this.addEmptyTraining()}>
-              add training
-            </button>
-          </div>
-        </div>
-      );
-    }
     return (
       <div>
         <div>{this.state.day.date}</div>
         <br></br>
-        <div>
-          <a>
-            {
-              <ul>
-                {() => TrainingService.formatResponse(this.state.trainings1)}
-              </ul>
-            }
-          </a>
-        </div>
+        <div>{/* <a>{<ul>{this.state.trainings}</ul>}</a> */}</div>
         <br></br>
+        <div>
+          <Training />
+        </div>
         <div>
           <button onClick={() => this.addEmptyTraining()}>add training</button>
         </div>
+        <div></div>
       </div>
     );
   }

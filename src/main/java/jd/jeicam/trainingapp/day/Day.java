@@ -35,9 +35,10 @@ public class Day {
     @JsonView(JsonViews.Get.class)
     private long id;
 
-    @OneToMany(mappedBy = "day")
+    //@OneToMany(mappedBy = "day")
+    @OneToOne(mappedBy = "day")
     @JsonView(JsonViews.Get.class)
-    private List<Training> trainings;
+    private Training training;
 
 //    @OneToMany(mappedBy = "day")
 //    private List<Meal> meals;
@@ -52,8 +53,9 @@ public class Day {
     private User user;
 
     public Day() {
-        this.trainings = new ArrayList<>();
+        //this.trainings = new ArrayList<>();
 //        this.meals = new ArrayList<>();
+        //this.training = new Training();
         this.date = Date.from(Instant.now());
     }
 }

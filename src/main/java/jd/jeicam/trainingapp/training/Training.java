@@ -45,7 +45,9 @@ public class Training {
     @JsonView(JsonViews.Get.class)
     private List<Exercise> exercises;
 
-    @ManyToOne
+    //@ManyToOne
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "DAY_ID", referencedColumnName = "id")
     @JsonView(JsonViews.GetExtended.class)
     private Day day;
 

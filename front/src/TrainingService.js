@@ -19,7 +19,8 @@ const TrainingService = {
         },
       }
     );
-    const data = await response.data;
+    //const data = await response.data;
+    const data = await Promise.all(response.data);
     const trainings = [];
     data.forEach((element) => {
       const training = {

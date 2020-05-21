@@ -29,6 +29,27 @@ public class TrainingService {
         return user.getId();
     }
 
+    public Training modifyTraining(Long id, String description){
+        Training training = trainingRepository.getOne(id);
+        training.setDesc(description);
+        return trainingRepository.save(training);
+    }
+
+    public Training getTrainingOrCreateNew(Date date, String username){
+        User user = userRepository.findByUsernameOrEmail(username, username).orElseThrow(IllegalArgumentException::new);
+        Day day = dayRepository.findByDateAndUserId(date, user.getId()).orElseThrow(IllegalArgumentException::new);
+
+        Optional<Training> training = trainingRepository.findByDayIdAndUserId(day.getId(), user.getId());
+        return training.orElseGet(() -> {
+            Training newTraining = new Training();
+            newTraining.setDesc("description");
+            newTraining.setExercises(new ArrayList<>());
+            newTraining.setUser(user);
+            newTraining.setDay(day);
+            return trainingRepository.save(newTraining);
+        });
+    }
+
     public Training addEmptyTrainig(Date date, String username){
         Long userId = getIdFromUsername(username);
         Day day = dayRepository.findByDateAndUserId(date, userId).orElseThrow(IllegalArgumentException::new);
@@ -45,15 +66,17 @@ public class TrainingService {
         return trainingRepository.findByIdAndUserId(trainingId, getIdFromUsername(username));
     }
 
-    public List<Training> getAllByUsernameAndDay(String username, Date date) {
-        Long userId = getIdFromUsername(username);
-        Day day = dayRepository.findByDateAndUserId(date, userId).orElseThrow(IllegalArgumentException::new);
-        return trainingRepository.findAllByUserIdAndDayId(getIdFromUsername(username), day.getId());
-    }
 
-    public List<Training> getAllByUsername(String username){
-        return trainingRepository.findAllByUserId(getIdFromUsername(username));
-    }
+
+//    public List<Training> getAllByUsernameAndDay(String username, Date date) {
+//        Long userId = getIdFromUsername(username);
+//        Day day = dayRepository.findByDateAndUserId(date, userId).orElseThrow(IllegalArgumentException::new);
+//        return trainingRepository.findAllByUserIdAndDayId(getIdFromUsername(username), day.getId());
+//    }
+//
+//    public List<Training> getAllByUsername(String username){
+//        return trainingRepository.findAllByUserId(getIdFromUsername(username));
+//    }
 
     public Training addNewTraining(Training training) {
         return trainingRepository.save(training);
