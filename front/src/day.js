@@ -79,7 +79,7 @@ class Day extends React.Component {
           <Training />
         </div>
         <div>
-          <button onClick={() => this.addEmptyTraining()}>add training</button>
+          {/* <button onClick={() => this.addEmptyTraining()}>add training</button> */}
         </div>
         <div></div>
       </div>

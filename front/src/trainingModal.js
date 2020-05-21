@@ -11,19 +11,20 @@ function TrainingModal(props) {
   const [isDescConfirmed, setIsDescConfirmed] = useState(false);
 
   useEffect(() => {
-    console.log(props.id);
-    axios({
-      method: "post",
-      url: "http://localhost:8080/api/training/edit/" + props.id,
-      params: { desc },
-      headers: {
-        "Access-Control-Allow-Origin": "*",
-        "Content-type": "Application/json",
-        Authorization: `Bearer ${props.token}`,
-      },
-    }).then(() => {
-      props.handler(desc);
-    });
+    if (props.id) {
+      axios({
+        method: "post",
+        url: "http://localhost:8080/api/training/edit/" + props.id,
+        params: { desc },
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+          "Content-type": "Application/json",
+          Authorization: `Bearer ${props.token}`,
+        },
+      }).then(() => {
+        props.handler(desc);
+      });
+    }
   }, [desc]);
 
   return (
