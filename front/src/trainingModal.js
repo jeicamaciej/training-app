@@ -25,7 +25,7 @@ function TrainingModal(props) {
         props.handler(desc);
       });
     }
-  }, [desc]);
+  }, [desc]); //TU SPRAWDZIC Z IS CONFIRMED !!!!!!
 
   return (
     <div>

@@ -26,6 +26,8 @@ public class ExerciseController {
         return ResponseEntity.status(HttpStatus.CREATED).body(exerciseService.addExercise(newExercise));
     }
 
+
+
     @GetMapping("/{id}")
     @JsonView(Exercise.JsonViews.GetExtended.class)
     ResponseEntity<Exercise> getExercise(@PathVariable Long id) {

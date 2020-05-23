@@ -52,20 +52,6 @@ class Day extends React.Component {
 
   componentDidMount() {
     this.getDay();
-    // TrainingService.getTrainings(this.state.date, this.state.token).then(
-    //   (t) => {
-    //     this.setState({ trainings: t });
-    //   }
-    // );
-    // this.getDay();
-    // TrainingService.test(this.state.date, this.state.token)
-    //   .then((t) => {
-    //     this.setState({ trainings1: t });
-    //     //this.setState(() => ({ isDataPresent: true }));
-    //     console.log(TrainingService.formatResponse(this.state.trainings1));
-    //   })
-    //   .then()
-    //   .catch((error) => console.log(error));
   }
 
   render() {

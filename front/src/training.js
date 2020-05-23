@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import TrainingModal from "./trainingModal";
 import Exercise from "./exercise";
+import Exercisee from "./exercisev2";
 
 function Training() {
   const [id, setId] = useState(0);
@@ -11,6 +12,7 @@ function Training() {
   const [date, setDate] = useState(new Date().toISOString().slice(0, 10));
   const [descHandler, setDescHandler] = useState("");
   const [isResponsePresent, setResponsePresent] = useState(false);
+  const [removedExercise, setRemovedExercise] = useState(false);
 
   useEffect(() => {
     axios({
@@ -22,38 +24,51 @@ function Training() {
         Authorization: `Bearer ${token}`,
       },
     }).then((response) => {
+      console.log(response.data.exercises);
       setId(response.data.id);
       setDesc(response.data.desc);
       setExercises(response.data.exercises);
-      //setExercises([1, 2, 3]);
       setResponsePresent(true);
     });
-  }, []);
+  }, [descHandler, removedExercise]);
 
   useEffect(() => {
     setDesc(descHandler);
   }, [descHandler]);
 
-  function a(val) {
+  function modalHandler(val) {
     setDescHandler(val);
+  }
+
+  function exerciseHandler() {
+    setRemovedExercise(!removedExercise);
   }
 
   return (
     <div>
-      <div>id {id}</div>
+      {/* <div>id {id}</div> */}
       <div>description {desc}</div>
-      <div>{/*<li>{exercises}</li>*/}</div>
-
       <div>
         {isResponsePresent && (
           <ul>
-            <Exercise exercises={exercises} />
+            {exercises.map((e) => (
+              <div key={e.id}>
+                <Exercise
+                  key
+                  exerciseId={e.id}
+                  exerciseName={e.name}
+                  exerciseDesc={e.desc}
+                  exerciseSets={e.series}
+                  trainingId={id}
+                  exerciseHandler={exerciseHandler}
+                />
+              </div>
+            ))}
           </ul>
         )}
       </div>
-
       <div>
-        <TrainingModal id={id} token={token} handler={a} />
+        <TrainingModal id={id} token={token} handler={modalHandler} />
       </div>
     </div>
   );

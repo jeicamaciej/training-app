@@ -14,10 +14,16 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/training")
 @AllArgsConstructor
-@CrossOrigin(origins = "*", allowedHeaders = "*")
+@CrossOrigin(origins = "*")
 public class TrainingController {
 
     private TrainingService trainingService;
+
+    @PostMapping("/remove/{exerciseId}/{trainingId}")
+    @JsonView(Training.JsonViews.Get.class)
+    ResponseEntity<Training> removeExerciseFromTraining(@PathVariable Long exerciseId, @PathVariable Long trainingId){
+        return ResponseEntity.ok(trainingService.removeExerciseFromTraining(trainingId, exerciseId));
+    }
 
     @PostMapping("/edit/{id}")
     @JsonView(Training.JsonViews.Get.class)

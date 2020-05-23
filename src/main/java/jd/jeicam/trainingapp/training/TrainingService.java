@@ -8,6 +8,7 @@ import jd.jeicam.trainingapp.user.User;
 import jd.jeicam.trainingapp.user.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
@@ -90,6 +91,7 @@ public class TrainingService {
         return trainingRepository.findById(id);
     }
 
+    @Transactional
     public Training removeExerciseFromTraining(Long trainingId, Long exerciseId) {
         if (!trainingRepository.existsById(trainingId) || !exerciseRepository.existsById(exerciseId)) {
             throw new IllegalArgumentException("training or exercise not present");
@@ -104,8 +106,9 @@ public class TrainingService {
 
         training.getExercises().remove(exercise);
         exercise.getTrainings().remove(training);
-        exerciseRepository.save(exercise);
-        return trainingRepository.save(training);
+        //exerciseRepository.save(exercise);
+        //return trainingRepository.save(training);
+        return training;
     }
 
 

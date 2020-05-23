@@ -20,7 +20,7 @@ public class ExerciseService {
         return exerciseRepository.save(newExercise);
     }
 
-    public Exercise modifyExercise(Long exerciseId, @NotNull String name) {
+    public Exercise modifyExercise(Long exerciseId, String name) {
         if (!exerciseRepository.existsById(exerciseId)) {
             throw new IllegalArgumentException("exercise not present");
         }
