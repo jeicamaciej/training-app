@@ -26,6 +26,7 @@ public class ExerciseService {
     private TrainingRepository trainingRepository;
     private UserRepository userRepository;
 
+    @Transactional
     public Exercise addExercise(String username, Long trainingId, String name) {
         User user = userRepository.findByUsernameOrEmail(username, username).orElseThrow(IllegalArgumentException::new);
         Training training = trainingRepository.getOne(trainingId);
@@ -35,6 +36,7 @@ public class ExerciseService {
         exercise.getTrainings().add(training);
         exercise.setUser(user);
         exercise.setSeries(new ArrayList<>());
+        training.getExercises().add(exercise);
         return exerciseRepository.save(exercise);
     }
 

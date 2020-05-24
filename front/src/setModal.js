@@ -10,7 +10,6 @@ function SetModal(props) {
 
   useEffect(() => {
     if (isInputConfirmed) {
-      console.log("confirmed");
       axios({
         method: "post",
         url: "http://localhost:8080/api/series/" + props.exerciseId + "/add",
@@ -22,7 +21,6 @@ function SetModal(props) {
         },
       }).then(() => {
         props.handler();
-        console.log("sent");
         setInputConfirmed(false);
       });
     }

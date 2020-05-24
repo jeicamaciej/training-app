@@ -3,7 +3,7 @@ import axios from "axios";
 import TrainingModal from "./trainingModal";
 import Exercise from "./exercise";
 import Exercisee from "./exercisev2";
-import useForceUpdate from "use-force-update";
+import ExerciseModal from "./exerciseModal";
 
 function Training() {
   const [id, setId] = useState(0);
@@ -66,6 +66,13 @@ function Training() {
             ))}
           </ul>
         )}
+      </div>
+      <div>
+        <ExerciseModal
+          trainingId={id}
+          token={token}
+          handler={exerciseHandler}
+        />
       </div>
       <div>
         <TrainingModal id={id} token={token} handler={modalHandler} />
