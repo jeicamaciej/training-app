@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Set from "./set";
+import SetModal from "./setModal";
 
 function Exercisee(props) {
   const [id, setId] = useState(0);
@@ -15,10 +16,9 @@ function Exercisee(props) {
     setId(props.exerciseId);
     setSets(props.exerciseSets);
     setDataPresent(true);
-  }, []);
+  });
 
   useEffect(() => {
-    console.log(id);
     if (isExerciseRemoved) {
       axios({
         method: "post",
@@ -39,23 +39,33 @@ function Exercisee(props) {
   }, [isExerciseRemoved]);
 
   const remove = () => {
-    setExerciseRemoved(true);
+    setExerciseRemoved(!isExerciseRemoved);
   };
 
   return (
     <div>
-      {/* <div>id: {id}</div> */}
       <div>name: {name}</div>
       <div>
         {isDataPresent && (
           <ol>
             {sets.map((s) => (
               <div key={s.id}>
-                <Set setsId={s.id} setsReps={s.reps} setsWeight={s.weight} />
+                <Set
+                  setsId={s.id}
+                  setsReps={s.reps}
+                  setsWeight={s.weight}
+                  exerciseId={id}
+                  handler={props.exerciseHandler}
+                />
               </div>
             ))}
           </ol>
         )}
+        <SetModal
+          exerciseId={id}
+          token={token}
+          handler={props.exerciseHandler}
+        />
         <button onClick={remove}>remove exercise</button>
       </div>
     </div>

@@ -2,11 +2,19 @@ package jd.jeicam.trainingapp.exercise;
 
 import jd.jeicam.trainingapp.set.Series;
 import jd.jeicam.trainingapp.set.SeriesRepository;
+import jd.jeicam.trainingapp.training.Training;
+import jd.jeicam.trainingapp.training.TrainingRepository;
+import jd.jeicam.trainingapp.user.User;
+import jd.jeicam.trainingapp.user.UserRepository;
 import lombok.AllArgsConstructor;
 import lombok.SneakyThrows;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -15,9 +23,19 @@ public class ExerciseService {
 
     private ExerciseRepository exerciseRepository;
     private SeriesRepository seriesRepository;
+    private TrainingRepository trainingRepository;
+    private UserRepository userRepository;
 
-    public Exercise addExercise(@NotNull Exercise newExercise) {
-        return exerciseRepository.save(newExercise);
+    public Exercise addExercise(String username, Long trainingId, String name) {
+        User user = userRepository.findByUsernameOrEmail(username, username).orElseThrow(IllegalArgumentException::new);
+        Training training = trainingRepository.getOne(trainingId);
+        Exercise exercise = new Exercise();
+        exercise.setName(name);
+        exercise.setTrainings(new ArrayList<>());
+        exercise.getTrainings().add(training);
+        exercise.setUser(user);
+        exercise.setSeries(new ArrayList<>());
+        return exerciseRepository.save(exercise);
     }
 
     public Exercise modifyExercise(Long exerciseId, String name) {
@@ -29,20 +47,21 @@ public class ExerciseService {
         return exerciseRepository.save(exercise);
     }
 
+    @Transactional
     public Exercise removeSeriesFromExercise(Long exerciseId, Long seriesId) {
-        if (exerciseRepository.existsById(exerciseId) && seriesRepository.existsById(seriesId)) {
-            Exercise exercise = exerciseRepository.getOne(exerciseId);
-            Series series = seriesRepository.getOne(seriesId);
-
-            if (exercise.getSeries().contains(series) || series.getExercise().equals(exercise)) {
-                exercise.getSeries().remove(series);
-                series.setExercise(null);
-                seriesRepository.save(series);
-                return exerciseRepository.save(exercise);
-            }
-            throw new IllegalArgumentException("Set not present");
+        if (!seriesRepository.existsById(seriesId) || !exerciseRepository.existsById(exerciseId)) {
+            throw new IllegalArgumentException("training or exercise not present");
         }
-        throw new IllegalArgumentException("Set or exercise not present");
+
+        Series series = seriesRepository.getOne(seriesId);
+        Exercise exercise = exerciseRepository.getOne(exerciseId);
+
+        if (!series.getExercise().equals(exercise) || !exercise.getSeries().contains(series)) {
+            throw new IllegalArgumentException("exercise not present");
+        }
+        seriesRepository.deleteById(seriesId);
+        return exerciseRepository.save(exercise);
+
     }
 
     @SneakyThrows

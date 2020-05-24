@@ -3,6 +3,7 @@ import axios from "axios";
 import TrainingModal from "./trainingModal";
 import Exercise from "./exercise";
 import Exercisee from "./exercisev2";
+import useForceUpdate from "use-force-update";
 
 function Training() {
   const [id, setId] = useState(0);
@@ -24,7 +25,6 @@ function Training() {
         Authorization: `Bearer ${token}`,
       },
     }).then((response) => {
-      console.log(response.data.exercises);
       setId(response.data.id);
       setDesc(response.data.desc);
       setExercises(response.data.exercises);

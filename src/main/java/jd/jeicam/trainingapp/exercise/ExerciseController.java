@@ -21,12 +21,11 @@ public class ExerciseController {
         return ResponseEntity.ok(exerciseService.getAllExercises());
     }
 
-    @PostMapping("/new")
-    ResponseEntity<Exercise> addExercise(@RequestBody Exercise newExercise) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(exerciseService.addExercise(newExercise));
+    @PostMapping("{trainingId}/add")
+    @JsonView(Exercise.JsonViews.Get.class)
+    ResponseEntity<Exercise> addExercise(String username, @PathVariable Long trainingId, @RequestParam String name) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(exerciseService.addExercise(username, trainingId, name));
     }
-
-
 
     @GetMapping("/{id}")
     @JsonView(Exercise.JsonViews.GetExtended.class)
@@ -34,8 +33,8 @@ public class ExerciseController {
         return ResponseEntity.ok(exerciseService.getExercise(id));
     }
 
-    @PostMapping("/{exerciseId}/removeSet/{seriesId}")
-    @JsonView(Exercise.JsonViews.GetExtended.class)
+    @PostMapping("remove/{exerciseId}/{seriesId}")
+    @JsonView(Exercise.JsonViews.Get.class)
     ResponseEntity<Exercise> removeSeriesFromExercise(@PathVariable Long exerciseId, @PathVariable Long seriesId) {
         return ResponseEntity.ok(exerciseService.removeSeriesFromExercise(exerciseId, seriesId));
     }
