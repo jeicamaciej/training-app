@@ -23,7 +23,7 @@ import java.util.List;
 public class Day {
 
     public interface JsonViews {
-        interface Get {
+        interface Get extends Training.JsonViews.Get  {
         }
         interface GetExtended extends Get{
 

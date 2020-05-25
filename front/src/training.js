@@ -2,51 +2,41 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import TrainingModal from "./trainingModal";
 import Exercise from "./exercise";
-import Exercisee from "./exercisev2";
 import ExerciseModal from "./exerciseModal";
 
-function Training() {
+function Training(props) {
   const [id, setId] = useState(0);
   const [exercises, setExercises] = useState();
   const [desc, setDesc] = useState("");
   const [token, setToken] = useState(localStorage.getItem("token").toString());
-  const [date, setDate] = useState(new Date().toISOString().slice(0, 10));
   const [descHandler, setDescHandler] = useState("");
   const [isResponsePresent, setResponsePresent] = useState(false);
   const [removedExercise, setRemovedExercise] = useState(false);
 
   useEffect(() => {
-    axios({
-      method: "get",
-      url: "http://localhost:8080/api/training/get/" + date,
-      headers: {
-        "Access-Control-Allow-Origin": "*",
-        "Content-type": "Application/json",
-        Authorization: `Bearer ${token}`,
-      },
-    }).then((response) => {
-      setId(response.data.id);
-      setDesc(response.data.desc);
-      setExercises(response.data.exercises);
-      setResponsePresent(true);
-    });
-  }, [descHandler, removedExercise]);
+    setDesc(props.desc);
+    setExercises(props.exercises);
+    setId(props.id);
+    setResponsePresent(true);
+  });
 
   useEffect(() => {
     setDesc(descHandler);
+    props.handler();
   }, [descHandler]);
 
   function modalHandler(val) {
     setDescHandler(val);
+    props.handler();
   }
 
   function exerciseHandler() {
     setRemovedExercise(!removedExercise);
+    props.handler();
   }
 
   return (
     <div>
-      {/* <div>id {id}</div> */}
       <div>description {desc}</div>
       <div>
         {isResponsePresent && (

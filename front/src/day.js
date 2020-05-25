@@ -1,76 +1,74 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { withRouter } from "react-router-dom";
-import TrainingService from "./TrainingService";
-import Training from "./training";
-import TrainingModal from "./trainingModal";
+import Training from "./trainingg";
 
-class Day extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      token: localStorage.getItem("token").toString(),
-      date: new Date().toISOString().slice(0, 10),
-      day: {},
-      trainings: {},
-      trainings1: [],
-      data: {},
-      isDataPresent: false,
-    };
+function Day(props) {
+  const [date, setDate] = useState(new Date());
+  const [isDateChanged, setDateChanged] = useState(false);
+  const [token, setToken] = useState(localStorage.getItem("token").toString());
+  const [training, setTraining] = useState({});
+  const [isTrainingPresent, setTrainingPresent] = useState(false);
+  const [isUpdated, setUpdated] = useState(false);
+  let [dateChangeValue, setDateChangeValue] = useState(0);
+
+  useEffect(() => {
+    let d = new Date();
+    d.setDate(d.getDate() + dateChangeValue);
+    setDate(d.toISOString().slice(0, 10));
+    setDateChanged(true);
+  }, [dateChangeValue]);
+
+  useEffect(() => {
+    if (isDateChanged || isUpdated) {
+      console.log(date);
+      axios({
+        method: "get",
+        url: "http://localhost:8080/api/day/a/" + date,
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+          "Content-type": "Application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      })
+        .then((response) => {
+          console.log(response.data);
+          console.log(response.data.training);
+          setTraining(response.data.training);
+          setTrainingPresent(true);
+        })
+        .then(() => {
+          setDateChanged(false);
+          setUpdated(false);
+        });
+    }
+  }, [isDateChanged, isUpdated]);
+
+  function handler() {
+    setUpdated(!isUpdated);
   }
 
-  getDay = () => {
-    axios({
-      method: "get",
-      url: "http://localhost:8080/api/day/date/" + this.state.date,
-      headers: {
-        "Access-Control-Allow-Origin": "*",
-        "Content-type": "Application/json",
-        Authorization: `Bearer ${this.state.token}`,
-      },
-    }).then((response) => {
-      const newDay = {
-        trainings: response.data.training,
-        date: response.data.date,
-      };
-      this.setState({ day: newDay });
-    });
-  };
-
-  addEmptyTraining = () => {
-    axios({
-      method: "post",
-      url: "http://localhost:8080/api/training/new/" + this.state.date,
-      headers: {
-        "Access-Control-Allow-Origin": "*",
-        "Content-type": "Application/json",
-        Authorization: `Bearer ${this.state.token}`,
-      },
-    }).then((response) => console.log(response));
-    window.location.reload();
-  };
-
-  componentDidMount() {
-    this.getDay();
-  }
-
-  render() {
-    return (
+  return (
+    <div>
+      <button onClick={() => setDateChangeValue((dateChangeValue += 1))}>
+        +
+      </button>
+      <button onClick={() => setDateChangeValue((dateChangeValue -= 1))}>
+        -
+      </button>
       <div>
-        <div>{this.state.day.date}</div>
-        <br></br>
-        <div>{/* <a>{<ul>{this.state.trainings}</ul>}</a> */}</div>
-        <br></br>
-        <div>
-          <Training />
-        </div>
-        <div>
-          {/* <button onClick={() => this.addEmptyTraining()}>add training</button> */}
-        </div>
-        <div></div>
+        {isTrainingPresent && (
+          <Training
+            id={training.id}
+            exercises={training.exercises}
+            //date={training.date}
+            desc={training.desc}
+            handler={handler}
+          />
+        )}
       </div>
-    );
-  }
+    </div>
+  );
 }
 
 export default withRouter(Day);

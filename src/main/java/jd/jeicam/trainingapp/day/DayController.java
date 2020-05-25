@@ -1,6 +1,7 @@
 package jd.jeicam.trainingapp.day;
 
 import com.fasterxml.jackson.annotation.JsonView;
+import jd.jeicam.trainingapp.training.TrainingService;
 import jd.jeicam.trainingapp.user.User;
 import lombok.AllArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -40,4 +41,11 @@ public class DayController {
     public ResponseEntity<Day> getByDayOrCreateNew(@PathVariable @DateTimeFormat(pattern = "yyyy-MM-dd")Date date, String username){
         return ResponseEntity.ok(dayService.getDayByDateOrCreateNew(date, username));
     }
+
+    @GetMapping("/a/{date}")
+    @JsonView(Day.JsonViews.Get.class)
+    public ResponseEntity<Day> getByDayOrCreateNewv2(@PathVariable @DateTimeFormat(pattern = "yyyy-MM-dd")Date date, String username){
+        return ResponseEntity.ok(dayService.getDayByDateOrCreateNewv2(date, username));
+    }
+
 }
