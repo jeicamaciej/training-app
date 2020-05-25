@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Register from "./register";
 import Login from "./login";
 import Day from "./day";
-import Dayy from "./dayy";
+import PageNotFound from "./pagenotfound";
 
 function App() {
   return (
@@ -19,9 +19,9 @@ function App() {
           <Route path="/register">
             <Register />
           </Route>
-          {/* <Route path="/">
-            <Day />
-          </Route> */}
+          <Route path="*">
+            <PageNotFound />
+          </Route>
         </Switch>
       </Router>
     </div>

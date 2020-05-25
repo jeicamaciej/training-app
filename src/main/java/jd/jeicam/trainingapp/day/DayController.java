@@ -36,16 +36,10 @@ public class DayController {
         return ResponseEntity.ok(dayService.getAllDays());
     }
 
-    @GetMapping("/date/{date}")
+    @GetMapping("/get/{date}")
     @JsonView(Day.JsonViews.Get.class)
     public ResponseEntity<Day> getByDayOrCreateNew(@PathVariable @DateTimeFormat(pattern = "yyyy-MM-dd")Date date, String username){
         return ResponseEntity.ok(dayService.getDayByDateOrCreateNew(date, username));
-    }
-
-    @GetMapping("/a/{date}")
-    @JsonView(Day.JsonViews.Get.class)
-    public ResponseEntity<Day> getByDayOrCreateNewv2(@PathVariable @DateTimeFormat(pattern = "yyyy-MM-dd")Date date, String username){
-        return ResponseEntity.ok(dayService.getDayByDateOrCreateNewv2(date, username));
     }
 
 }

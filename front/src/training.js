@@ -40,7 +40,7 @@ function Training(props) {
       <div>description {desc}</div>
       <div>
         {isResponsePresent && (
-          <ul>
+          <div>
             {exercises.map((e) => (
               <div key={e.id}>
                 <Exercise
@@ -54,7 +54,7 @@ function Training(props) {
                 />
               </div>
             ))}
-          </ul>
+          </div>
         )}
       </div>
       <div>

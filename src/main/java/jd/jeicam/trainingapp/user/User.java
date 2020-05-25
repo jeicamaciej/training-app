@@ -30,7 +30,7 @@ import java.util.Set;
 public class User {
 
     public interface JsonViews{
-        interface Get{}
+        interface Get extends Role.JsonViews.Get{}
 
         interface GetExtended extends Get{}
     }
@@ -52,12 +52,14 @@ public class User {
     @NotBlank
     //@Size(max = 40)
     @NaturalId
+    @JsonView(JsonViews.Get.class)
     private String email;
 
     @NotBlank
     //@Size(max = 60)
     private String password;
 
+    @JsonView(JsonViews.Get.class)
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name =  "TRAININGAPP_USER_ROLES",
         joinColumns = @JoinColumn(name = "USER_ID"),

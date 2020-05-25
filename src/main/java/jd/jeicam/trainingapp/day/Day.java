@@ -23,7 +23,7 @@ import java.util.List;
 public class Day {
 
     public interface JsonViews {
-        interface Get extends Training.JsonViews.Get  {
+        interface Get extends Training.JsonViews.Get, User.JsonViews.Get  {
         }
         interface GetExtended extends Get{
 
@@ -35,13 +35,9 @@ public class Day {
     @JsonView(JsonViews.Get.class)
     private long id;
 
-    //@OneToMany(mappedBy = "day")
     @OneToOne(mappedBy = "day")
     @JsonView(JsonViews.Get.class)
     private Training training;
-
-//    @OneToMany(mappedBy = "day")
-//    private List<Meal> meals;
 
     @JsonFormat(pattern = "yyyy-MM-dd")
     @JsonView(JsonViews.Get.class)
@@ -49,13 +45,10 @@ public class Day {
     private Date date;
 
     @ManyToOne
-    @JsonView(JsonViews.GetExtended.class)
+    @JsonView(JsonViews.Get.class)
     private User user;
 
     public Day() {
-        //this.trainings = new ArrayList<>();
-//        this.meals = new ArrayList<>();
-        //this.training = new Training();
         this.date = Date.from(Instant.now());
     }
 }

@@ -6,7 +6,6 @@ function Set(props) {
   const [reps, setReps] = useState(0);
   const [weight, setWeight] = useState(0);
   const [isSetRemoved, setSetRemoved] = useState(false);
-  const [isSetAdded, setSetAdded] = useState(false);
   const [token, setToken] = useState(localStorage.getItem("token").toString());
 
   useEffect(() => {
@@ -39,8 +38,6 @@ function Set(props) {
   const remove = () => {
     setSetRemoved(!isSetRemoved);
   };
-
-  const add = () => {};
 
   return (
     <div>

@@ -43,18 +43,6 @@ public class DayService {
         return day.orElseGet(() -> {
             Day newDay = new Day();
             newDay.setDate(date);
-            newDay.setUser(userRepository.findByUsernameOrEmail(username, username)
-                    .orElseThrow(IllegalArgumentException::new));
-            return dayRepository.save(newDay);
-        });
-    }
-
-    public Day getDayByDateOrCreateNewv2(Date date, String username) {
-        Long userId = getIdFromUsername(username);
-        Optional<Day> day = dayRepository.findByDateAndUserId(date, userId);
-        return day.orElseGet(() -> {
-            Day newDay = new Day();
-            newDay.setDate(date);
             newDay.setUser(userRepository.getOne(userId));
             dayRepository.save(newDay);
 
