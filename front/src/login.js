@@ -40,7 +40,7 @@ class Login extends React.Component {
       localStorage.setItem("usernameOrEmail", this.state.loginValue);
       //console.log(localStorage.getItem("token"));
       //console.log(localStorage.getItem("usernameOrEmail"));
-      setTimeout(() => history.push("/home"), 1500);
+      setTimeout(() => history.push("/home"), 250);
     });
   };
 

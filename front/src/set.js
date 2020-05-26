@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faMinusSquare } from "@fortawesome/free-solid-svg-icons";
+import { Button } from "react-bootstrap";
 
 function Set(props) {
   const [id, setId] = useState(0);
@@ -43,9 +46,16 @@ function Set(props) {
     <div>
       <li>
         reps: {reps}
-        weight: {weight}
+        weight: {weight}{" "}
+        <Button
+          onClick={remove}
+          variant={"secondary"}
+          size={"sm"}
+          //</li>style={{ height: 20, width: 20 }}
+        >
+          <FontAwesomeIcon icon={faMinusSquare} />
+        </Button>
       </li>
-      <button onClick={remove}>remove set</button>
     </div>
   );
 }

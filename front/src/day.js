@@ -3,6 +3,22 @@ import axios from "axios";
 import { withRouter } from "react-router-dom";
 import Training from "./trainingg";
 import Logout from "./logout";
+import Modal from "react-modal";
+import "bootstrap/dist/css/bootstrap.min.css";
+import {
+  Container,
+  Row,
+  Col,
+  Card,
+  Badge,
+  Button,
+  Navbar,
+  Nav,
+} from "react-bootstrap";
+import "react-bootstrap/dist/react-bootstrap.min.js";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCalendarPlus } from "@fortawesome/free-solid-svg-icons";
+import { faCalendarMinus } from "@fortawesome/free-solid-svg-icons";
 
 function Day(props) {
   const [date, setDate] = useState(new Date());
@@ -14,6 +30,7 @@ function Day(props) {
   let [dateChangeValue, setDateChangeValue] = useState(0);
   const [userRole, setUserRole] = useState([]);
   const [isUserAdmin, setUserAdmin] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     if (token === null) {
@@ -75,28 +92,80 @@ function Day(props) {
     setTimeout(() => props.history.push("/login"), 250);
   }
 
+  function formatDate(value) {
+    let newDate = new Date(date);
+    newDate.setDate(newDate.getDate() + value);
+    return newDate.toISOString().slice(0, 10);
+  }
+
   return (
-    <div>
-      <div>
-        <button onClick={removeJWT}>logout</button>
-      </div>
-      <div>{isUserAdmin && <button>admin</button>}</div>
-      <button onClick={() => setDateChangeValue((dateChangeValue += 1))}>
-        +
-      </button>
-      <button onClick={() => setDateChangeValue((dateChangeValue -= 1))}>
-        -
-      </button>
-      <div>
-        {isTrainingPresent && (
-          <Training
-            id={training.id}
-            exercises={training.exercises}
-            desc={training.desc}
-            handler={handler}
-          />
-        )}
-      </div>
+    <div
+      style={{
+        backgroundColor: "#64498c",
+      }}
+    >
+      <Navbar bg="dark" variant="dark">
+        <Nav className="container-fluid">
+          <Nav.Item>{isUserAdmin && <button>admin</button>}</Nav.Item>
+          <Nav.Item className="ml-auto">
+            <Button
+              onClick={() => setDateChangeValue((dateChangeValue -= 1))}
+              variant={"secondary"}
+              size={"md"}
+              style={{ backgroundColor: "#302e39" }}
+            >
+              <FontAwesomeIcon icon={faCalendarMinus} /> {formatDate(-1)}
+            </Button>
+          </Nav.Item>
+          <Button
+            variant={"secondary"}
+            size={"md"}
+            style={{ backgroundColor: "#64498c" }}
+          >
+            {formatDate(0)}
+          </Button>
+          <Nav.Item>
+            <Button
+              onClick={() => setDateChangeValue((dateChangeValue += 1))}
+              variant={"secondary"}
+              size={"md"}
+              style={{ backgroundColor: "#302e39" }}
+            >
+              {formatDate(1)} <FontAwesomeIcon icon={faCalendarPlus} />
+            </Button>
+          </Nav.Item>
+          <Nav.Item className="ml-auto">
+            <Button
+              onClick={removeJWT}
+              variant={"dark"}
+              size={"sm"}
+              style={{ backgroundColor: "#302e39" }}
+            >
+              logout
+            </Button>
+          </Nav.Item>
+        </Nav>
+      </Navbar>
+      <br></br>
+      <Container>
+        <div>
+          <Card bg={"dark"} text={"light"}>
+            <Card.Title className="text-center">
+              <Card bg={"secondary"}>{date.toString()}</Card>
+            </Card.Title>
+            <Card.Body>
+              {isTrainingPresent && (
+                <Training
+                  id={training.id}
+                  exercises={training.exercises}
+                  desc={training.desc}
+                  handler={handler}
+                />
+              )}
+            </Card.Body>
+          </Card>
+        </div>
+      </Container>
     </div>
   );
 }

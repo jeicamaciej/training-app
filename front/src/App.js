@@ -4,6 +4,7 @@ import Register from "./register";
 import Login from "./login";
 import Day from "./day";
 import PageNotFound from "./pagenotfound";
+import Test from "./logout";
 
 function App() {
   return (
