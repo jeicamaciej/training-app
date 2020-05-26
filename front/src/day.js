@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { withRouter } from "react-router-dom";
-import Training from "./trainingg";
+import Training from "./training";
 import Logout from "./logout";
 import Modal from "react-modal";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -169,5 +169,4 @@ function Day(props) {
     </div>
   );
 }
-
 export default withRouter(Day);

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import TrainingModal from "./trainingModal";
 import Exercise from "./exercise";
+import Exercisee from "./exercisev2";
 import ExerciseModal from "./exerciseModal";
 
 function Training(props) {
@@ -37,10 +38,9 @@ function Training(props) {
 
   return (
     <div>
-      <div>description {desc}</div>
       <div>
         {isResponsePresent && (
-          <div>
+          <ul>
             {exercises.map((e) => (
               <div key={e.id}>
                 <Exercise
@@ -54,7 +54,7 @@ function Training(props) {
                 />
               </div>
             ))}
-          </div>
+          </ul>
         )}
       </div>
       <div>
@@ -67,6 +67,7 @@ function Training(props) {
       <div>
         <TrainingModal id={id} token={token} handler={modalHandler} />
       </div>
+      <div>description: {desc}</div>
     </div>
   );
 }

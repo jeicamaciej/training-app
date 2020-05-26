@@ -51,7 +51,7 @@ function Set(props) {
           onClick={remove}
           variant={"secondary"}
           size={"sm"}
-          //</li>style={{ height: 20, width: 20 }}
+          style={{ backgroundColor: "#343A40" }}
         >
           <FontAwesomeIcon icon={faMinusSquare} />
         </Button>
