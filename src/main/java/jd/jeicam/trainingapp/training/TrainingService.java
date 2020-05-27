@@ -51,7 +51,7 @@ public class TrainingService {
         });
     }
 
-    public Training addEmptyTrainig(Date date, String username){
+    public Training addEmptyTraining(Date date, String username){
         Long userId = getIdFromUsername(username);
         Day day = dayRepository.findByDateAndUserId(date, userId).orElseThrow(IllegalArgumentException::new);
         User user = userRepository.findByUsernameOrEmail(username, username).orElseThrow(IllegalArgumentException::new);
@@ -62,22 +62,6 @@ public class TrainingService {
         training.setDesc("description");
         return trainingRepository.save(training);
     }
-
-    public Training getOneByIdAndUsername(Long trainingId, String username) {
-        return trainingRepository.findByIdAndUserId(trainingId, getIdFromUsername(username));
-    }
-
-
-
-//    public List<Training> getAllByUsernameAndDay(String username, Date date) {
-//        Long userId = getIdFromUsername(username);
-//        Day day = dayRepository.findByDateAndUserId(date, userId).orElseThrow(IllegalArgumentException::new);
-//        return trainingRepository.findAllByUserIdAndDayId(getIdFromUsername(username), day.getId());
-//    }
-//
-//    public List<Training> getAllByUsername(String username){
-//        return trainingRepository.findAllByUserId(getIdFromUsername(username));
-//    }
 
     public Training addNewTraining(Training training) {
         return trainingRepository.save(training);

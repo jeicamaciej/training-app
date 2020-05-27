@@ -1,8 +1,6 @@
 package jd.jeicam.trainingapp.day;
 
 import com.fasterxml.jackson.annotation.JsonView;
-import jd.jeicam.trainingapp.training.TrainingService;
-import jd.jeicam.trainingapp.user.User;
 import lombok.AllArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;

@@ -16,9 +16,4 @@ public class SeriesController {
     public ResponseEntity<Series> addSeries(String username, @PathVariable Long exerciseId, @RequestParam (name = "reps") Integer reps, @RequestParam (name = "weight")Double weight){
         return ResponseEntity.ok(seriesService.addSeries(username, exerciseId, reps, weight));
     }
-
-    @PostMapping("/edit/{seriesId}")
-    public ResponseEntity<Series> modifyExercise(@PathVariable Long seriesId, @RequestParam(required = false) Integer reps, @RequestParam(required = false) Double weight, @RequestParam(required = false) String comment){
-        return ResponseEntity.ok(seriesService.modifySeries(seriesId, reps, weight, comment));
-    }
 }

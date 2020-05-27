@@ -5,20 +5,12 @@ import Training from "./training";
 import Logout from "./logout";
 import Modal from "react-modal";
 import "bootstrap/dist/css/bootstrap.min.css";
-import {
-  Container,
-  Row,
-  Col,
-  Card,
-  Badge,
-  Button,
-  Navbar,
-  Nav,
-} from "react-bootstrap";
+import { Container, Card, Button, Navbar, Nav } from "react-bootstrap";
 import "react-bootstrap/dist/react-bootstrap.min.js";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCalendarPlus } from "@fortawesome/free-solid-svg-icons";
 import { faCalendarMinus } from "@fortawesome/free-solid-svg-icons";
+import "./day.css";
 
 function Day(props) {
   const [date, setDate] = useState(new Date());
@@ -99,14 +91,20 @@ function Day(props) {
   }
 
   return (
-    <div
-      style={{
-        backgroundColor: "#64498c",
-      }}
-    >
+    <div className="background">
       <Navbar bg="dark" variant="dark">
         <Nav className="container-fluid">
-          <Nav.Item>{isUserAdmin && <button>admin</button>}</Nav.Item>
+          <Nav.Item>
+            {isUserAdmin && (
+              <Button
+                variant={"secondary"}
+                size="md"
+                style={{ backgroundColor: "#302e39" }}
+              >
+                admin panel
+              </Button>
+            )}
+          </Nav.Item>
           <Nav.Item className="ml-auto">
             <Button
               onClick={() => setDateChangeValue((dateChangeValue -= 1))}
@@ -137,8 +135,8 @@ function Day(props) {
           <Nav.Item className="ml-auto">
             <Button
               onClick={removeJWT}
-              variant={"dark"}
-              size={"sm"}
+              variant={"secondary"}
+              size={"md"}
               style={{ backgroundColor: "#302e39" }}
             >
               logout

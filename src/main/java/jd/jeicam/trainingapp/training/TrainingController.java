@@ -7,7 +7,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.xml.ws.Response;
 import java.util.Date;
 import java.util.List;
 
@@ -39,7 +38,7 @@ public class TrainingController {
 
     @PostMapping("/new/{date}")
     ResponseEntity<Training> addEmptyTraining(@PathVariable @DateTimeFormat(pattern = "yyyy-MM-dd") Date date, String username) {
-        return ResponseEntity.ok(trainingService.addEmptyTrainig(date, username));
+        return ResponseEntity.ok(trainingService.addEmptyTraining(date, username));
     }
 
     @GetMapping("/get/{date}")
@@ -60,17 +59,5 @@ public class TrainingController {
     ResponseEntity<Training> addNewTraining(@RequestBody Training training) {
         return ResponseEntity.ok(trainingService.addNewTraining(training));
     }
-
-//    @GetMapping("/all")
-//    @JsonView(Training.JsonViews.Get.class)
-//    public ResponseEntity<List<Training>> getAllByUsername(String username){
-//        return ResponseEntity.ok(trainingService.getAllByUsername(username));
-//    }
-//
-//    @GetMapping("/all/{date}")
-//    @JsonView(Training.JsonViews.Get.class)
-//    public ResponseEntity<List<Training>> getAllByUsernameAndDay(String username,@PathVariable @DateTimeFormat(pattern = "yyyy-MM-dd")Date date){
-//        return ResponseEntity.ok(trainingService.getAllByUsernameAndDay(username, date));
-//    }
 
 }

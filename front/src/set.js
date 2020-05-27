@@ -2,7 +2,9 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMinusSquare } from "@fortawesome/free-solid-svg-icons";
-import { Button } from "react-bootstrap";
+import { Button, CardColumns } from "react-bootstrap";
+import { Table, Card, CardGroup } from "react-bootstrap";
+import "./day.css";
 
 function Set(props) {
   const [id, setId] = useState(0);
@@ -32,7 +34,6 @@ function Set(props) {
           Authorization: `Bearer ${token}`,
         },
       }).then(() => {
-        console.log(id);
         props.handler();
       });
     }
@@ -44,18 +45,21 @@ function Set(props) {
 
   return (
     <div>
-      <li>
-        reps: {reps}
-        weight: {weight}{" "}
-        <Button
-          onClick={remove}
-          variant={"secondary"}
-          size={"sm"}
-          style={{ backgroundColor: "#343A40" }}
-        >
-          <FontAwesomeIcon icon={faMinusSquare} />
-        </Button>
-      </li>
+      <CardColumns>
+        <Card bsPrefix="medium-exercise-card">
+          <li>
+            <CardGroup>
+              <Card bg="secondary">
+                {weight + " kg"}
+                {" x "} {reps}
+              </Card>
+              <Button bsPrefix="remove-button" onClick={remove}>
+                <FontAwesomeIcon icon={faMinusSquare} />
+              </Button>
+            </CardGroup>
+          </li>
+        </Card>
+      </CardColumns>
     </div>
   );
 }

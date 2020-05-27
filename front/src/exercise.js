@@ -2,6 +2,9 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Set from "./set";
 import SetModal from "./setModal";
+import { Card, Button, ButtonGroup } from "react-bootstrap";
+import "./day.css";
+import { CardTitle } from "react-bootstrap/Card";
 
 function Exercisee(props) {
   const [id, setId] = useState(0);
@@ -44,30 +47,42 @@ function Exercisee(props) {
 
   return (
     <div>
-      <div>name: {name}</div>
-      <div>
-        {isDataPresent && (
-          <ol>
-            {sets.map((s) => (
-              <div key={s.id}>
-                <Set
-                  setsId={s.id}
-                  setsReps={s.reps}
-                  setsWeight={s.weight}
-                  exerciseId={id}
-                  handler={props.exerciseHandler}
-                />
-              </div>
-            ))}
-          </ol>
-        )}
-        <SetModal
-          exerciseId={id}
-          token={token}
-          handler={props.exerciseHandler}
-        />
-        <button onClick={remove}>remove exercise</button>
-      </div>
+      <Card bsPrefix="exerciseCard">
+        <Card.Title>{name}</Card.Title>
+        <div>
+          {isDataPresent && (
+            <div>
+              {sets.map((s) => (
+                <div key={s.id}>
+                  <Set
+                    setsId={s.id}
+                    setsReps={s.reps}
+                    setsWeight={s.weight}
+                    exerciseId={id}
+                    handler={props.exerciseHandler}
+                  />
+                </div>
+              ))}
+            </div>
+          )}
+          <br></br>
+          <ButtonGroup>
+            <SetModal
+              exerciseId={id}
+              token={token}
+              handler={props.exerciseHandler}
+            />
+            <Button
+              variant={"secondary"}
+              onClick={remove}
+              size="sm"
+              style={{ backgroundColor: "#302e39" }}
+            >
+              remove exercise
+            </Button>
+          </ButtonGroup>
+        </div>
+      </Card>
     </div>
   );
 }

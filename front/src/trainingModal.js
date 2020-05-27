@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Modal from "react-modal";
 import Training from "./training";
+import { Button } from "react-bootstrap";
 
 function TrainingModal(props) {
   //const [id, setId] = useState(props.id);
@@ -29,7 +30,14 @@ function TrainingModal(props) {
 
   return (
     <div>
-      <button onClick={() => setIsModalOpen(true)}>edit</button>
+      <Button
+        onClick={() => setIsModalOpen(true)}
+        variant={"secondary"}
+        size="sm"
+        style={{ backgroundColor: "#302e39" }}
+      >
+        edit description
+      </Button>
       <Modal isOpen={isModalOpen}>
         <p>edit</p>
         <form>

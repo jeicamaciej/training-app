@@ -4,7 +4,6 @@ import TrainingModal from "./trainingModal";
 import Exercise from "./exercise";
 import Exercisee from "./exercisev2";
 import ExerciseModal from "./exerciseModal";
-
 function Training(props) {
   const [id, setId] = useState(0);
   const [exercises, setExercises] = useState();
@@ -48,7 +47,7 @@ function Training(props) {
                   exerciseId={e.id}
                   exerciseName={e.name}
                   exerciseDesc={e.desc}
-                  exerciseSets={e.series}
+                  exerciseSets={e.series.slice().reverse()} // ??????
                   trainingId={id}
                   exerciseHandler={exerciseHandler}
                 />
@@ -63,11 +62,12 @@ function Training(props) {
           token={token}
           handler={exerciseHandler}
         />
+        <br></br>
       </div>
+      <div>{desc}</div>
       <div>
         <TrainingModal id={id} token={token} handler={modalHandler} />
       </div>
-      <div>description: {desc}</div>
     </div>
   );
 }
