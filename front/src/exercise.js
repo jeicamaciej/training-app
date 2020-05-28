@@ -47,40 +47,42 @@ function Exercisee(props) {
 
   return (
     <div>
-      <Card bsPrefix="exerciseCard">
-        <Card.Title>{name}</Card.Title>
-        <div>
-          {isDataPresent && (
-            <div>
-              {sets.map((s) => (
-                <div key={s.id}>
-                  <Set
-                    setsId={s.id}
-                    setsReps={s.reps}
-                    setsWeight={s.weight}
-                    exerciseId={id}
-                    handler={props.exerciseHandler}
-                  />
-                </div>
-              ))}
-            </div>
-          )}
-          <SetModal
-            exerciseId={id}
-            token={token}
-            handler={props.exerciseHandler}
-          />
-          <Button
-            className="mt-2"
-            variant={"secondary"}
-            onClick={remove}
-            size="sm"
-            style={{ backgroundColor: "#302e39" }}
-          >
-            remove exercise
-          </Button>
-        </div>
-      </Card>
+      <div className="center-exercise-card">
+        <Card bsPrefix="exerciseCard">
+          <Card.Title>{name}</Card.Title>
+          <div>
+            {isDataPresent && (
+              <div>
+                {sets.map((s) => (
+                  <div key={s.id}>
+                    <Set
+                      setsId={s.id}
+                      setsReps={s.reps}
+                      setsWeight={s.weight}
+                      exerciseId={id}
+                      handler={props.exerciseHandler}
+                    />
+                  </div>
+                ))}
+              </div>
+            )}
+            <SetModal
+              exerciseId={id}
+              token={token}
+              handler={props.exerciseHandler}
+            />
+            <Button
+              className="mt-2"
+              variant={"secondary"}
+              onClick={remove}
+              size="sm"
+              style={{ backgroundColor: "#302e39" }}
+            >
+              remove exercise
+            </Button>
+          </div>
+        </Card>
+      </div>
     </div>
   );
 }

@@ -101,10 +101,11 @@ function Day(props) {
                 size="md"
                 style={{ backgroundColor: "#302e39" }}
               >
-                admin panel
+                admin
               </Button>
             )}
           </Nav.Item>
+          {/* <div className="day-switch-buttons"> */}
           <Nav.Item className="ml-auto">
             <Button
               className="change-day-button"
@@ -117,6 +118,7 @@ function Day(props) {
             </Button>
           </Nav.Item>
           <Button
+            className="middle-date-button"
             variant={"secondary"}
             size={"md"}
             style={{ backgroundColor: "#64498c" }}
@@ -133,6 +135,7 @@ function Day(props) {
               {formatDate(1)} <FontAwesomeIcon icon={faCalendarPlus} />
             </Button>
           </Nav.Item>
+          {/* </div> */}
           <Nav.Item className="ml-auto">
             <Button
               onClick={removeJWT}
@@ -147,8 +150,8 @@ function Day(props) {
       </Navbar>
       <br></br>
       <div>
-        <Container>
-          <div className="training-container">
+        <Container className="training-container">
+          <div>
             <Card bg={"dark"} text={"light"}>
               <Card.Title className="text-center">
                 <Card bg={"secondary"}>{date.toString()}</Card>

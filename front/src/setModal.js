@@ -49,6 +49,7 @@ function SetModal(props) {
               <Form.Row>
                 <Col>
                   <Form.Control
+                    className="add-set-weight"
                     size="sm"
                     placeholder="weight"
                     type="text"
@@ -57,6 +58,7 @@ function SetModal(props) {
                 </Col>
                 <Col>
                   <Form.Control
+                    className="add-set-reps"
                     size="sm"
                     placeholder="reps"
                     type="text"
@@ -64,30 +66,32 @@ function SetModal(props) {
                   />
                 </Col>
                 <Col>
-                  <Button
-                    variant="secondary"
-                    size="sm"
-                    className="confirm-button"
-                    onClick={() => {
-                      setIsModalOpen(!isModalOpen);
-                      setInputConfirmed(!isInputConfirmed);
-                    }}
-                  >
-                    <div className="font-size">
-                      <FontAwesomeIcon icon={faPlusSquare} />
-                      {/* confirm */}
-                    </div>
-                  </Button>
-                  <Button
-                    variant="secondary"
-                    className="cancel-button"
-                    size="sm"
-                    //className="ml-2"
-                    onClick={() => setIsModalOpen(!isModalOpen)}
-                  >
-                    <FontAwesomeIcon icon={faWindowClose} />
-                    {/* cancel */}
-                  </Button>
+                  <ButtonGroup className="cancel-confirm-group">
+                    <Button
+                      variant="secondary"
+                      size="sm"
+                      className="confirm-button"
+                      onClick={() => {
+                        setIsModalOpen(!isModalOpen);
+                        setInputConfirmed(!isInputConfirmed);
+                      }}
+                    >
+                      <div className="font-size">
+                        <FontAwesomeIcon icon={faPlusSquare} />
+                        {/* confirm */}
+                      </div>
+                    </Button>
+                    <Button
+                      variant="secondary"
+                      className="cancel-button"
+                      size="sm"
+                      //className="ml-2"
+                      onClick={() => setIsModalOpen(!isModalOpen)}
+                    >
+                      <FontAwesomeIcon icon={faWindowClose} />
+                      {/* cancel */}
+                    </Button>
+                  </ButtonGroup>
                 </Col>
               </Form.Row>
             </Form>

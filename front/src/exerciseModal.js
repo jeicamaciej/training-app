@@ -8,6 +8,7 @@ import {
   Col,
   InputGroup,
   ButtonGroup,
+  Container,
 } from "react-bootstrap";
 
 function ExerciseModal(props) {
@@ -35,7 +36,6 @@ function ExerciseModal(props) {
 
   return (
     <div>
-      {" "}
       {!isModalOpen && (
         <Button
           onClick={() => setIsModalOpen(!isModalOpen)}
@@ -47,52 +47,53 @@ function ExerciseModal(props) {
         </Button>
       )}
       {isModalOpen && (
-        <div>
-          <Row>
-            <Form>
-              <InputGroup>
-                <Form.Control
-                  className="new-exercise-form"
-                  size="sm"
-                  placeholder="new exercise"
-                  type="text"
-                  onInput={(e) => {
-                    e.preventDefault();
-                    setName(e.target.value);
-                  }}
-                />
-                <InputGroup.Append>
-                  <ButtonGroup>
-                    <Button
-                      type="submit"
-                      className="add-exercise-button"
-                      size="sm"
-                      variant="secondary"
-                      onClick={(e) => {
-                        setIsModalOpen(!isModalOpen);
-                        setNameConfirmed(!isNameConfirmed);
-                        e.preventDefault();
-                      }}
-                    >
-                      add
-                    </Button>
-                    <Button
-                      type="submit"
-                      className="add-exercise-button"
-                      size="sm"
-                      variant="secondary"
-                      onClick={(e) => {
-                        setIsModalOpen(!isModalOpen);
-                        e.preventDefault();
-                      }}
-                    >
-                      cancel
-                    </Button>
-                  </ButtonGroup>
-                </InputGroup.Append>
-              </InputGroup>
-            </Form>
-          </Row>
+        <div className="new-exercise-form">
+          <div>
+            <Row>
+              <Form>
+                <InputGroup className="new-exercise-form">
+                  <Form.Control
+                    size="sm"
+                    placeholder="new exercise"
+                    type="text"
+                    onInput={(e) => {
+                      e.preventDefault();
+                      setName(e.target.value);
+                    }}
+                  />
+                  <InputGroup.Append>
+                    <ButtonGroup>
+                      <Button
+                        type="submit"
+                        className="add-exercise-button"
+                        size="sm"
+                        variant="secondary"
+                        onClick={(e) => {
+                          setIsModalOpen(!isModalOpen);
+                          setNameConfirmed(!isNameConfirmed);
+                          e.preventDefault();
+                        }}
+                      >
+                        add
+                      </Button>
+                      <Button
+                        type="submit"
+                        className="add-exercise-button"
+                        size="sm"
+                        variant="secondary"
+                        onClick={(e) => {
+                          setIsModalOpen(!isModalOpen);
+                          e.preventDefault();
+                        }}
+                      >
+                        cancel
+                      </Button>
+                    </ButtonGroup>
+                  </InputGroup.Append>
+                </InputGroup>
+              </Form>
+            </Row>
+          </div>
         </div>
       )}
     </div>

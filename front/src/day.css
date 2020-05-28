@@ -6,17 +6,34 @@
 }
 
 .training-container {
-  margin: auto !important;
+  /* display: block !important; */
+  /* justify-content: center; */
+  /* width: 50% !important; */
+  /* left: 50vh !important; */
+}
 
-  /* top: 0; */
-  /* bottom: 0; */
-  position: relative;
-  left: 10vh;
-  right: 10vh;
+.middle-date-button {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.day-switch-buttons {
+  display: inline-flex !important;
+}
+
+ul,
+li {
+  margin: 0;
+  padding: 0;
 }
 
 .change-day-button {
   background-color: #302e39 !important;
+}
+
+.nav-items-padding {
+  padding-left: 2px;
+  padding-right: 2px;
 }
 
 .change-day-button:focus {
@@ -25,11 +42,15 @@
   box-shadow: none !important;
 }
 
+.center-exercise-card {
+  display: flex !important;
+  justify-content: center;
+}
+
 .exerciseCard {
   padding: 10px;
   background-color: #343a40;
   width: 30vh;
-  float: top;
   box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.2);
 }
 
@@ -78,28 +99,47 @@ ul {
   background-color: #302e39;
 }
 
+.add-set-weight {
+  width: 115% !important;
+}
+
+.add-set-reps {
+  width: 115% !important;
+  margin-left: 5px;
+}
+
 .confirm-button {
   background-color: #64498c !important;
-  margin-right: 1px !important;
+  /* margin-right: 1px !important; */
+  margin-left: 1px;
 }
 
 .cancel-button {
   background-color: #302e39 !important;
   text-align: center !important;
+  margin-left: 10px;
+}
+
+.cancel-confirm-group {
+  margin-left: 10px;
 }
 
 .new-exercise-form {
-  width: 19vh !important;
-  margin-left: 55px;
+  display: flex !important;
+  justify-content: center;
+  /* top: 0; */
+  /* bottom: 0; */
 }
 
 .new-exercise-button {
   background-color: #64498c !important;
-  margin-left: 40px;
+  margin: 0 auto !important;
+  display: block !important;
 }
 
 .add-exercise-button {
   background-color: #64498c !important;
+  /* left: 100vh !important; */
 }
 
 .add-exercise-button:focus {
@@ -112,7 +152,7 @@ ul {
 }
 
 .medium-exercise-card {
-  width: 25vh;
+  width: 28vh;
   background-color: #343a40;
   text-align: center;
   border: 1px;
