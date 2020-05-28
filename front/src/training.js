@@ -5,7 +5,6 @@ import Exercise from "./exercise";
 import Exercisee from "./exercisev2";
 import ExerciseModal from "./exerciseModal";
 import "./day.css";
-import { Container, Card, Button, Navbar, Nav } from "react-bootstrap";
 
 function Training(props) {
   const [id, setId] = useState(0);

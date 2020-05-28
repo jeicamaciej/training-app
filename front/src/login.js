@@ -2,6 +2,8 @@ import React from "react";
 import axios from "axios";
 import { Route, Link, BrowserRouter as Router, Switch } from "react-router-dom";
 import { withRouter } from "react-router-dom";
+import "./login.css";
+import { Container, Card, Button, Form } from "react-bootstrap";
 
 class Login extends React.Component {
   constructor(props) {
@@ -46,34 +48,46 @@ class Login extends React.Component {
 
   render() {
     return (
-      <div>
-        <form onSubmit={this.handleSubmit}>
-          <label>
-            <input
-              placeholder="username or email"
-              type="text"
-              value={this.state.loginValue}
-              onChange={this.handleLoginChange}
-            />
-          </label>
-          <br />
-          <label>
-            <input
-              placeholder="password"
-              type="text"
-              value={this.state.passwordValue}
-              onChange={this.handlePasswordChange}
-            />
-          </label>
-          <button type="submit" onClick={this.handleSubmit}>
-            sign in
-          </button>
-          <div>
-            <li>
-              <Link to="/register">sign up</Link>
-            </li>
-          </div>
-        </form>
+      <div className="background">
+        <Card bg="dark" border="secondary" className="main-card">
+          <Card.Header className="main-card-header"> AAAAA </Card.Header>
+          <Card.Body className="form-card">
+            <div>
+              <div className="center-form">
+                <Form onSubmit={this.handleSubmit} className="form-input">
+                  <label>
+                    <Form.Control
+                      className="input"
+                      placeholder="username or email"
+                      type="text"
+                      value={this.state.loginValue}
+                      onChange={this.handleLoginChange}
+                    />
+                  </label>
+                  <br />
+                  <label>
+                    <Form.Control
+                      className="input"
+                      placeholder="password"
+                      type="text"
+                      value={this.state.passwordValue}
+                      onChange={this.handlePasswordChange}
+                    />
+                  </label>
+                  <br></br>
+                  <div>
+                    <button type="submit" onClick={this.handleSubmit}>
+                      sign in
+                    </button>
+                    <li>
+                      <Link to="/register">sign up</Link>
+                    </li>
+                  </div>
+                </Form>
+              </div>
+            </div>
+          </Card.Body>
+        </Card>
       </div>
     );
   }
