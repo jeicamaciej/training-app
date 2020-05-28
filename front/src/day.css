@@ -1,0 +1,127 @@
+.background {
+  background-color: #64498c;
+  height: 100vh;
+  width: 100%;
+  overflow-y: auto;
+}
+
+.training-container {
+  margin: auto !important;
+
+  /* top: 0; */
+  /* bottom: 0; */
+  position: relative;
+  left: 10vh;
+  right: 10vh;
+}
+
+.change-day-button {
+  background-color: #302e39 !important;
+}
+
+.change-day-button:focus {
+  outline: none !important;
+  -webkit-box-shadow: none !important;
+  box-shadow: none !important;
+}
+
+.exerciseCard {
+  padding: 10px;
+  background-color: #343a40;
+  width: 30vh;
+  float: top;
+  box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.set-modal {
+  background-color: #343a40;
+}
+
+.add-set-button {
+  background-color: #64498c !important;
+}
+
+.add-set-button:focus {
+  outline: none !important;
+  -webkit-box-shadow: none !important;
+  box-shadow: none !important;
+}
+
+.form {
+  background: #6c757d;
+}
+
+.remove-button {
+  background-color: #343a40;
+  color: white;
+  font-size: 25px;
+  display: inline-flex;
+  border: none;
+}
+
+.remove-button:focus {
+  background-color: #343a40;
+  border: 0;
+  outline: 0;
+  transform: scale(0.9);
+}
+
+.remove-button:active {
+  border: 0;
+}
+
+ul {
+  list-style-type: none;
+}
+
+.remove-set {
+  background-color: #302e39;
+}
+
+.confirm-button {
+  background-color: #64498c !important;
+  margin-right: 1px !important;
+}
+
+.cancel-button {
+  background-color: #302e39 !important;
+  text-align: center !important;
+}
+
+.new-exercise-form {
+  width: 19vh !important;
+  margin-left: 55px;
+}
+
+.new-exercise-button {
+  background-color: #64498c !important;
+  margin-left: 40px;
+}
+
+.add-exercise-button {
+  background-color: #64498c !important;
+}
+
+.add-exercise-button:focus {
+  box-shadow: none !important;
+}
+
+.add-exercise-button:hover {
+  transform: scale(1.02);
+  border-color: white;
+}
+
+.medium-exercise-card {
+  width: 25vh;
+  background-color: #343a40;
+  text-align: center;
+  border: 1px;
+}
+
+.smaller-exercise-card {
+  background-color: #343a40;
+}
+
+body {
+  height: 100%;
+}

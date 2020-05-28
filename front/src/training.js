@@ -4,6 +4,9 @@ import TrainingModal from "./trainingModal";
 import Exercise from "./exercise";
 import Exercisee from "./exercisev2";
 import ExerciseModal from "./exerciseModal";
+import "./day.css";
+import { Container, Card, Button, Navbar, Nav } from "react-bootstrap";
+
 function Training(props) {
   const [id, setId] = useState(0);
   const [exercises, setExercises] = useState();
@@ -38,35 +41,32 @@ function Training(props) {
   return (
     <div>
       <div>
-        {isResponsePresent && (
-          <ul>
-            {exercises.map((e) => (
-              <div key={e.id}>
-                <Exercise
-                  key
-                  exerciseId={e.id}
-                  exerciseName={e.name}
-                  exerciseDesc={e.desc}
-                  exerciseSets={e.series.slice().reverse()} // ??????
-                  trainingId={id}
-                  exerciseHandler={exerciseHandler}
-                />
-              </div>
-            ))}
-          </ul>
-        )}
-      </div>
-      <div>
-        <ExerciseModal
-          trainingId={id}
-          token={token}
-          handler={exerciseHandler}
-        />
-        <br></br>
-      </div>
-      <div>{desc}</div>
-      <div>
-        <TrainingModal id={id} token={token} handler={modalHandler} />
+        <div>
+          {isResponsePresent && (
+            <ul>
+              {exercises.map((e) => (
+                <div key={e.id}>
+                  <Exercise
+                    key
+                    exerciseId={e.id}
+                    exerciseName={e.name}
+                    exerciseDesc={e.desc}
+                    exerciseSets={e.series} // ??????.slice().reverse()
+                    trainingId={id}
+                    exerciseHandler={exerciseHandler}
+                  />
+                </div>
+              ))}
+            </ul>
+          )}
+        </div>
+        <div>
+          <ExerciseModal
+            trainingId={id}
+            token={token}
+            handler={exerciseHandler}
+          />
+        </div>
       </div>
     </div>
   );

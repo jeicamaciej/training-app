@@ -1,16 +1,13 @@
 package jd.jeicam.trainingapp.day;
 
+import jd.jeicam.trainingapp.set.Series;
 import jd.jeicam.trainingapp.training.Training;
 import jd.jeicam.trainingapp.training.TrainingRepository;
 import jd.jeicam.trainingapp.user.User;
 import jd.jeicam.trainingapp.user.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 @AllArgsConstructor
@@ -40,6 +37,7 @@ public class DayService {
     public Day getDayByDateOrCreateNew(Date date, String username) {
         Long userId = getIdFromUsername(username);
         Optional<Day> day = dayRepository.findByDateAndUserId(date, userId);
+        day.ifPresent(d->d.getTraining().getExercises().forEach(e-> e.getSeries().sort(Comparator.comparingLong(Series::getId))));
         return day.orElseGet(() -> {
             Day newDay = new Day();
             newDay.setDate(date);

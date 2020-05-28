@@ -1,7 +1,14 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Modal from "react-modal";
-import { Button } from "react-bootstrap";
+import {
+  Button,
+  Form,
+  Row,
+  Col,
+  InputGroup,
+  ButtonGroup,
+} from "react-bootstrap";
 
 function ExerciseModal(props) {
   const [name, setName] = useState("");
@@ -28,35 +35,66 @@ function ExerciseModal(props) {
 
   return (
     <div>
-      <Button
-        onClick={() => setIsModalOpen(!isModalOpen)}
-        variant={"secondary"}
-        size="sm"
-        style={{ backgroundColor: "#302e39" }}
-      >
-        add exercise
-      </Button>
-      <Modal isOpen={isModalOpen}>
-        {/* <p>add</p> */}
-        <form>
-          <label>
-            <input
-              placeholder="name"
-              type="text"
-              onChange={(e) => setName(e.target.value)}
-            />
-          </label>
-        </form>
-        <button
-          onClick={() => {
-            setIsModalOpen(!isModalOpen);
-            setNameConfirmed(!isNameConfirmed);
-          }}
+      {" "}
+      {!isModalOpen && (
+        <Button
+          onClick={() => setIsModalOpen(!isModalOpen)}
+          className="new-exercise-button"
+          size="sm"
+          variant="secondary"
         >
-          confirm
-        </button>
-        <button onClick={() => setIsModalOpen(!isModalOpen)}>cancel</button>
-      </Modal>
+          Add new exericse
+        </Button>
+      )}
+      {isModalOpen && (
+        <div>
+          <Row>
+            <Form>
+              <InputGroup>
+                <Form.Control
+                  className="new-exercise-form"
+                  size="sm"
+                  placeholder="new exercise"
+                  type="text"
+                  onInput={(e) => {
+                    e.preventDefault();
+                    setName(e.target.value);
+                  }}
+                />
+                <InputGroup.Append>
+                  <ButtonGroup>
+                    <Button
+                      type="submit"
+                      className="add-exercise-button"
+                      size="sm"
+                      variant="secondary"
+                      onClick={(e) => {
+                        setIsModalOpen(!isModalOpen);
+                        setNameConfirmed(!isNameConfirmed);
+                        e.preventDefault();
+                      }}
+                    >
+                      add
+                    </Button>
+                    <Button
+                      type="submit"
+                      className="add-exercise-button"
+                      size="sm"
+                      variant="secondary"
+                      onClick={(e) => {
+                        setIsModalOpen(!isModalOpen);
+                        e.preventDefault();
+                      }}
+                    >
+                      cancel
+                    </Button>
+                  </ButtonGroup>
+                </InputGroup.Append>
+              </InputGroup>
+            </Form>
+          </Row>
+        </div>
+      )}
     </div>
   );
 }

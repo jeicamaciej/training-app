@@ -3,17 +3,20 @@ package jd.jeicam.trainingapp.set;
 import com.fasterxml.jackson.annotation.JsonView;
 import jd.jeicam.trainingapp.exercise.Exercise;
 import jd.jeicam.trainingapp.user.User;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
+//@Data
+@ToString
 @Table(name = "TRAININGAPP_SERIES")
+@Getter
+@Setter
+@EqualsAndHashCode
 public class Series {
 
     public interface JsonViews {
@@ -48,4 +51,17 @@ public class Series {
     @ManyToOne
     @JsonView(JsonViews.GetExtended.class)
     private User user;
+//
+//    @Override
+//    public boolean equals(Object o) {
+//        if (this == o) return true;
+//        if (!(o instanceof Series)) return false;
+//        Series series = (Series) o;
+//        return id == series.id;
+//    }
+//
+//    @Override
+//    public int hashCode() {
+//        return Objects.hash(id);
+//    }
 }

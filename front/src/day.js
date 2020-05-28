@@ -107,10 +107,11 @@ function Day(props) {
           </Nav.Item>
           <Nav.Item className="ml-auto">
             <Button
+              className="change-day-button"
               onClick={() => setDateChangeValue((dateChangeValue -= 1))}
               variant={"secondary"}
               size={"md"}
-              style={{ backgroundColor: "#302e39" }}
+              // style={{ backgroundColor: "#302e39" }}
             >
               <FontAwesomeIcon icon={faCalendarMinus} /> {formatDate(-1)}
             </Button>
@@ -124,10 +125,10 @@ function Day(props) {
           </Button>
           <Nav.Item>
             <Button
+              className="change-day-button"
               onClick={() => setDateChangeValue((dateChangeValue += 1))}
               variant={"secondary"}
               size={"md"}
-              style={{ backgroundColor: "#302e39" }}
             >
               {formatDate(1)} <FontAwesomeIcon icon={faCalendarPlus} />
             </Button>
@@ -145,25 +146,27 @@ function Day(props) {
         </Nav>
       </Navbar>
       <br></br>
-      <Container>
-        <div>
-          <Card bg={"dark"} text={"light"}>
-            <Card.Title className="text-center">
-              <Card bg={"secondary"}>{date.toString()}</Card>
-            </Card.Title>
-            <Card.Body>
-              {isTrainingPresent && (
-                <Training
-                  id={training.id}
-                  exercises={training.exercises}
-                  desc={training.desc}
-                  handler={handler}
-                />
-              )}
-            </Card.Body>
-          </Card>
-        </div>
-      </Container>
+      <div>
+        <Container>
+          <div className="training-container">
+            <Card bg={"dark"} text={"light"}>
+              <Card.Title className="text-center">
+                <Card bg={"secondary"}>{date.toString()}</Card>
+              </Card.Title>
+              <Card.Body>
+                {isTrainingPresent && (
+                  <Training
+                    id={training.id}
+                    exercises={training.exercises}
+                    desc={training.desc}
+                    handler={handler}
+                  />
+                )}
+              </Card.Body>
+            </Card>
+          </div>
+        </Container>
+      </div>
     </div>
   );
 }

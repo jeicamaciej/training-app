@@ -65,22 +65,20 @@ function Exercisee(props) {
               ))}
             </div>
           )}
-          <br></br>
-          <ButtonGroup>
-            <SetModal
-              exerciseId={id}
-              token={token}
-              handler={props.exerciseHandler}
-            />
-            <Button
-              variant={"secondary"}
-              onClick={remove}
-              size="sm"
-              style={{ backgroundColor: "#302e39" }}
-            >
-              remove exercise
-            </Button>
-          </ButtonGroup>
+          <SetModal
+            exerciseId={id}
+            token={token}
+            handler={props.exerciseHandler}
+          />
+          <Button
+            className="mt-2"
+            variant={"secondary"}
+            onClick={remove}
+            size="sm"
+            style={{ backgroundColor: "#302e39" }}
+          >
+            remove exercise
+          </Button>
         </div>
       </Card>
     </div>

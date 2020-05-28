@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import Modal from "react-modal";
-import { Button } from "react-bootstrap";
+//import Modal from "react-modal";
+import { Button, Form, Col, Row, ButtonGroup } from "react-bootstrap";
+import "./day.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlusSquare, faWindowClose } from "@fortawesome/free-solid-svg-icons";
 
 function SetModal(props) {
   const [weight, setWeight] = useState(0);
@@ -30,42 +33,66 @@ function SetModal(props) {
   return (
     <div>
       <div>
-        <Button
-          onClick={() => setIsModalOpen(!isModalOpen)}
-          variant={"secondary"}
-          size="sm"
-          style={{ backgroundColor: "#302e39" }}
-        >
-          add set
-        </Button>
-        <Modal isOpen={isModalOpen}>
-          <p>add set</p>
-          <form>
-            <label>
-              <input
-                placeholder="weight"
-                type="text"
-                onChange={(e) => setWeight(e.target.value)}
-              />
-            </label>
-            <label>
-              <input
-                placeholder="reps"
-                type="text"
-                onChange={(e) => setReps(e.target.value)}
-              />
-            </label>
-          </form>
-          <button
-            onClick={() => {
-              setIsModalOpen(!isModalOpen);
-              setInputConfirmed(!isInputConfirmed);
-            }}
+        {!isModalOpen && (
+          <Button
+            className="add-set-button"
+            onClick={() => setIsModalOpen(!isModalOpen)}
+            variant={"secondary"}
+            size="sm"
           >
-            confirm
-          </button>
-          <button onClick={() => setIsModalOpen(!isModalOpen)}>cancel</button>
-        </Modal>
+            add set
+          </Button>
+        )}
+        {isModalOpen && (
+          <div>
+            <Form>
+              <Form.Row>
+                <Col>
+                  <Form.Control
+                    size="sm"
+                    placeholder="weight"
+                    type="text"
+                    onChange={(e) => setWeight(e.target.value)}
+                  />
+                </Col>
+                <Col>
+                  <Form.Control
+                    size="sm"
+                    placeholder="reps"
+                    type="text"
+                    onChange={(e) => setReps(e.target.value)}
+                  />
+                </Col>
+                <Col>
+                  <Button
+                    variant="secondary"
+                    size="sm"
+                    className="confirm-button"
+                    onClick={() => {
+                      setIsModalOpen(!isModalOpen);
+                      setInputConfirmed(!isInputConfirmed);
+                    }}
+                  >
+                    <div className="font-size">
+                      <FontAwesomeIcon icon={faPlusSquare} />
+                      {/* confirm */}
+                    </div>
+                  </Button>
+                  <Button
+                    variant="secondary"
+                    className="cancel-button"
+                    size="sm"
+                    //className="ml-2"
+                    onClick={() => setIsModalOpen(!isModalOpen)}
+                  >
+                    <FontAwesomeIcon icon={faWindowClose} />
+                    {/* cancel */}
+                  </Button>
+                </Col>
+              </Form.Row>
+            </Form>
+          </div>
+        )}
       </div>
     </div>
   );
