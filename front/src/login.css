@@ -6,7 +6,17 @@
 }
 
 .main-card-header {
+  margin-top: 5px;
   text-align: center !important;
+  color: white;
+}
+
+.error-message {
+  margin: auto;
+  margin-top: 5px;
+  text-align: center !important;
+  color: white;
+  font-size: 12px;
 }
 
 .main-card {
@@ -18,9 +28,7 @@
 }
 
 .center-form {
-  margin-top: 100px;
-  display: block !important;
-  justify-content: center !important;
+  margin-top: 50px;
 }
 
 .input {
@@ -55,4 +63,21 @@ input:active {
   /* background-color: #302e39; */
   margin-bottom: 5px;
   border-color: white;
+}
+
+.bottom-buttons {
+  display: block !important;
+  justify-content: center !important;
+  margin: auto;
+}
+
+.sign-in-button:active {
+  background-color: #5e666d;
+}
+
+.sign-in-button:focus {
+  outline: none !important;
+  -webkit-box-shadow: none !important;
+  box-shadow: none !important;
+  background-color: #5e666d !important;
 }
