@@ -5,7 +5,15 @@ import Training from "./training";
 import Logout from "./logout";
 import Modal from "react-modal";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Container, Card, Button, Navbar, Nav } from "react-bootstrap";
+import {
+  Container,
+  Card,
+  Button,
+  Navbar,
+  Nav,
+  Row,
+  Col,
+} from "react-bootstrap";
 import "react-bootstrap/dist/react-bootstrap.min.js";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCalendarPlus } from "@fortawesome/free-solid-svg-icons";
@@ -94,58 +102,59 @@ function Day(props) {
     <div className="background">
       <Navbar bg="dark" variant="dark">
         <Nav className="container-fluid">
-          <Nav.Item>
-            {isUserAdmin && (
-              <Button
-                variant={"secondary"}
-                size="md"
-                style={{ backgroundColor: "#302e39" }}
-              >
-                admin
-              </Button>
-            )}
-          </Nav.Item>
-          {/* <div className="day-switch-buttons"> */}
-          <Nav.Item className="ml-auto">
-            <Button
-              className="change-day-button"
-              onClick={() => setDateChangeValue((dateChangeValue -= 1))}
-              variant={"secondary"}
-              size={"md"}
-              // style={{ backgroundColor: "#302e39" }}
-            >
-              <FontAwesomeIcon icon={faCalendarMinus} /> {formatDate(-1)}
-            </Button>
-          </Nav.Item>
-          <Button
-            className="middle-date-button"
-            variant={"secondary"}
-            size={"md"}
-            style={{ backgroundColor: "#64498c" }}
-          >
-            {formatDate(0)}
-          </Button>
-          <Nav.Item>
-            <Button
-              className="change-day-button"
-              onClick={() => setDateChangeValue((dateChangeValue += 1))}
-              variant={"secondary"}
-              size={"md"}
-            >
-              {formatDate(1)} <FontAwesomeIcon icon={faCalendarPlus} />
-            </Button>
-          </Nav.Item>
-          {/* </div> */}
-          <Nav.Item className="ml-auto">
-            <Button
-              onClick={removeJWT}
-              variant={"secondary"}
-              size={"md"}
-              style={{ backgroundColor: "#302e39" }}
-            >
-              logout
-            </Button>
-          </Nav.Item>
+          <div className="nav-wrapper">
+            <Row>
+              <div className="day-switch-buttons">
+                <Button
+                  className="change-day-button"
+                  onClick={() => setDateChangeValue((dateChangeValue -= 1))}
+                  variant={"secondary"}
+                  size={"md"}
+                >
+                  <FontAwesomeIcon icon={faCalendarMinus} /> {formatDate(-1)}
+                </Button>
+                <Button
+                  className="middle-date-button"
+                  variant={"secondary"}
+                  size={"md"}
+                  style={{ backgroundColor: "#64498c" }}
+                >
+                  {formatDate(0)}
+                </Button>
+                <Button
+                  className="change-day-button"
+                  onClick={() => setDateChangeValue((dateChangeValue += 1))}
+                  variant={"secondary"}
+                  size={"md"}
+                >
+                  {formatDate(1)} <FontAwesomeIcon icon={faCalendarPlus} />
+                </Button>
+              </div>
+              <div>
+                {isUserAdmin && (
+                  <div className="admin-button">
+                    <Button
+                      variant={"secondary"}
+                      size="md"
+                      style={{ backgroundColor: "#302e39" }}
+                    >
+                      admin
+                    </Button>{" "}
+                  </div>
+                )}
+              </div>
+              <div className="logout-button">
+                <Button
+                  onClick={removeJWT}
+                  variant={"secondary"}
+                  size={"md"}
+                  style={{ backgroundColor: "#302e39" }}
+                >
+                  logout
+                </Button>
+              </div>
+            </Row>
+          </div>
         </Nav>
       </Navbar>
       <br></br>

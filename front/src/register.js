@@ -54,7 +54,7 @@ class Register extends React.Component {
       .then((response) => {
         // console.log(response);
         this.setState({ message: response.data.message + ", redirecting" });
-        setTimeout(() => history.push("/login"), 500);
+        setTimeout(() => history.push("/login"), 1000);
       })
       .catch((error) => {
         this.setState({ message: "Incorrect creditentials" });

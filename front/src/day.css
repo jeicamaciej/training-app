@@ -19,6 +19,7 @@
 
 .day-switch-buttons {
   display: inline-flex !important;
+  margin: auto !important;
 }
 
 ul,
@@ -164,4 +165,44 @@ ul {
 
 body {
   height: 100%;
+}
+
+.logout-button {
+  position: fixed !important;
+  right: 0;
+  margin-right: 5px;
+}
+
+.admin-button {
+  position: fixed !important;
+  left: 0;
+  margin-left: 5px;
+}
+
+@media (max-width: 500px) {
+  .admin-button {
+    position: relative !important;
+    margin-left: 1px;
+    margin-top: 3px;
+  }
+  .logout-button {
+    position: relative !important;
+    margin-top: 3px;
+    margin-left: 1px;
+  }
+}
+
+.day-switch-buttons {
+  position: relative !important;
+  /* margin: auto !important; */
+}
+
+.nav-bar {
+  position: relative !important;
+}
+
+.nav-wrapper {
+  justify-content: center !important;
+  text-align: center;
+  margin: auto !important;
 }
