@@ -130,29 +130,32 @@ function Day(props) {
                   {formatDate(1)} <FontAwesomeIcon icon={faCalendarPlus} />
                 </Button>
               </div>
-              <div>
-                {isUserAdmin && (
-                  <div className="admin-button">
-                    <Button
-                      variant={"secondary"}
-                      size="md"
-                      style={{ backgroundColor: "#302e39" }}
-                    >
-                      admin
-                    </Button>{" "}
-                  </div>
-                )}
-              </div>
-              <div className="logout-button">
-                <Button
-                  onClick={removeJWT}
-                  variant={"secondary"}
-                  size={"md"}
-                  style={{ backgroundColor: "#302e39" }}
-                >
-                  logout
-                </Button>
-              </div>
+              <Row className="center-buttons">
+                <div>
+                  {isUserAdmin && (
+                    <div className="admin-button">
+                      <Button
+                        onClick={() => props.history.push("/admin")}
+                        variant={"secondary"}
+                        size="md"
+                        style={{ backgroundColor: "#302e39" }}
+                      >
+                        admin
+                      </Button>{" "}
+                    </div>
+                  )}
+                </div>
+                <div className="logout-button">
+                  <Button
+                    onClick={removeJWT}
+                    variant={"secondary"}
+                    size={"md"}
+                    style={{ backgroundColor: "#302e39" }}
+                  >
+                    logout
+                  </Button>
+                </div>
+              </Row>
             </Row>
           </div>
         </Nav>

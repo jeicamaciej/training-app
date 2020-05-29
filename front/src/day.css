@@ -183,13 +183,17 @@ body {
   .admin-button {
     position: relative !important;
     margin-left: 1px;
-    margin-top: 3px;
+    margin-top: 5px;
   }
   .logout-button {
     position: relative !important;
-    margin-top: 3px;
-    margin-left: 1px;
+    margin-top: 5px;
+    margin-left: 3px;
   }
+}
+
+.center-buttons {
+  margin: 0 auto !important;
 }
 
 .day-switch-buttons {

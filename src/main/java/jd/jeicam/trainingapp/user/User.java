@@ -11,7 +11,6 @@ import org.hibernate.annotations.NaturalId;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
 import java.util.List;
 import java.util.Set;
 
@@ -29,15 +28,20 @@ import java.util.Set;
 @AllArgsConstructor
 public class User {
 
-    public interface JsonViews{
-        interface Get extends Role.JsonViews.Get{}
+    public interface JsonViews {
+        interface Get extends Role.JsonViews.Get {
+        }
 
-        interface GetExtended extends Get{}
+        interface GetExtended extends Get {
+        }
+
+        interface GetAdminView {
+        }
     }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @JsonView(JsonViews.Get.class)
+    @JsonView({JsonViews.Get.class, JsonViews.GetAdminView.class})
     private long id;
 
     @NotBlank
@@ -46,13 +50,13 @@ public class User {
 
     @NotBlank
     //@Size(max = 20)
-    @JsonView(JsonViews.Get.class)
+    @JsonView({JsonViews.Get.class, JsonViews.GetAdminView.class})
     private String username;
 
     @NotBlank
     //@Size(max = 40)
     @NaturalId
-    @JsonView(JsonViews.Get.class)
+    @JsonView({JsonViews.Get.class, JsonViews.GetAdminView.class})
     private String email;
 
     @NotBlank
@@ -61,9 +65,9 @@ public class User {
 
     @JsonView(JsonViews.Get.class)
     @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name =  "TRAININGAPP_USER_ROLES",
-        joinColumns = @JoinColumn(name = "USER_ID"),
-        inverseJoinColumns = @JoinColumn(name = "ROLE_ID")
+    @JoinTable(name = "TRAININGAPP_USER_ROLES",
+            joinColumns = @JoinColumn(name = "USER_ID"),
+            inverseJoinColumns = @JoinColumn(name = "ROLE_ID")
     )
     private Set<Role> roles;
 
@@ -83,7 +87,6 @@ public class User {
         this.email = email;
         this.password = password;
     }
-
 
 
 }

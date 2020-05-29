@@ -5,6 +5,7 @@ import Login from "./login";
 import Day from "./day";
 import PageNotFound from "./pagenotfound";
 import Test from "./logout";
+import Admin from "./admin";
 
 function App() {
   return (
@@ -13,6 +14,9 @@ function App() {
         <Switch>
           <Route path="/home">
             <Day />
+          </Route>
+          <Route path="/admin">
+            <Admin />
           </Route>
           <Route path="/login">
             <Login />
