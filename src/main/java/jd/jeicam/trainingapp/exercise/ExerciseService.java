@@ -17,10 +17,10 @@ import java.util.List;
 @AllArgsConstructor
 public class ExerciseService {
 
-    private ExerciseRepository exerciseRepository;
-    private SeriesRepository seriesRepository;
-    private TrainingRepository trainingRepository;
-    private UserRepository userRepository;
+    private final ExerciseRepository exerciseRepository;
+    private final SeriesRepository seriesRepository;
+    private final TrainingRepository trainingRepository;
+    private final UserRepository userRepository;
 
     @Transactional
     public Exercise addExercise(String username, Long trainingId, String name) {

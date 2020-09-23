@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import TrainingModal from "./trainingModal";
 import Exercise from "./exercise";
-import Exercisee from "./exercisev2";
 import ExerciseModal from "./exerciseModal";
 import "./day.css";
 
