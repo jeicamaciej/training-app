@@ -20,10 +20,10 @@ import java.util.Optional;
 @AllArgsConstructor
 public class TrainingService {
 
-    private TrainingRepository trainingRepository;
-    private ExerciseRepository exerciseRepository;
-    private UserRepository userRepository;
-    private DayRepository dayRepository;
+    private final TrainingRepository trainingRepository;
+    private final ExerciseRepository exerciseRepository;
+    private final UserRepository userRepository;
+    private final DayRepository dayRepository;
 
     private Long getIdFromUsername(String username) {
         User user = userRepository.findByUsernameOrEmail(username, username).orElseThrow(IllegalArgumentException::new);
@@ -90,8 +90,6 @@ public class TrainingService {
 
         training.getExercises().remove(exercise);
         exercise.getTrainings().remove(training);
-        //exerciseRepository.save(exercise);
-        //return trainingRepository.save(training);
         return training;
     }
 

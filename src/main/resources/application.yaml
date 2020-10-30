@@ -10,6 +10,10 @@ spring:
     username: postgres
     password: postgres
 
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/off
+
   mail:
     host: smtp.gmail.com
     port: 587

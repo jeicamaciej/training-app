@@ -16,7 +16,7 @@ import java.util.List;
 @CrossOrigin(origins = "*")
 public class TrainingController {
 
-    private TrainingService trainingService;
+    private final TrainingService trainingService;
 
     @PostMapping("/remove/{exerciseId}/{trainingId}")
     @JsonView(Training.JsonViews.Get.class)

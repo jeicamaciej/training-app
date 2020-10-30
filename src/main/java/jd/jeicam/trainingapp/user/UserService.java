@@ -1,9 +1,7 @@
 package jd.jeicam.trainingapp.user;
 
 import jd.jeicam.trainingapp.security.role.Role;
-import jd.jeicam.trainingapp.training.TrainingRepository;
 import lombok.AllArgsConstructor;
-import lombok.SneakyThrows;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -22,6 +20,5 @@ public class UserService {
             return userRepository.findAll();
         }
         throw new IllegalAccessException("no permissions");
-
     }
 }

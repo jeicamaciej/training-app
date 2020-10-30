@@ -1,6 +1,7 @@
 package jd.jeicam.trainingapp.user;
 
 import com.fasterxml.jackson.annotation.JsonView;
+import jd.jeicam.trainingapp.calories_calculator.Meal;
 import jd.jeicam.trainingapp.day.Day;
 import jd.jeicam.trainingapp.exercise.Exercise;
 import jd.jeicam.trainingapp.security.role.Role;
@@ -79,7 +80,10 @@ public class User {
     private List<Exercise> exercises;
     @OneToMany(mappedBy = "user")
     private List<Series> series;
-
+    @OneToMany(mappedBy = "user")
+    private List<Meal> meals;
+    @ElementCollection
+    private List<String> products;
 
     public User(String name, String username, String email, String password) {
         this.name = name;

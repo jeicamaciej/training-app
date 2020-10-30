@@ -16,7 +16,7 @@ function Exercisee(props) {
 
   useEffect(() => {
     setName(props.exerciseName);
-    setId(props.exerciseId);
+    setId(props.exerciseId); 
     setSets(props.exerciseSets);
     setDataPresent(true);
   });
