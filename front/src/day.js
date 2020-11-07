@@ -17,6 +17,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCalendarPlus } from "@fortawesome/free-solid-svg-icons";
 import { faCalendarMinus } from "@fortawesome/free-solid-svg-icons";
 import "./day.css";
+import Product from "./product";
+import Meal from "./meal";
 
 function Day(props) {
   const [date, setDate] = useState(new Date());
@@ -25,10 +27,10 @@ function Day(props) {
   const [training, setTraining] = useState({});
   const [isTrainingPresent, setTrainingPresent] = useState(false);
   const [isUpdated, setUpdated] = useState(false);
-  let [dateChangeValue, setDateChangeValue] = useState(0);
   const [userRole, setUserRole] = useState([]);
   const [isUserAdmin, setUserAdmin] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  let [dateChangeValue, setDateChangeValue] = useState(0);
 
   useEffect(() => {
     if (token === null) {
@@ -180,6 +182,9 @@ function Day(props) {
           </div>
         </Container>
       </div>
+          <div>
+            <Meal/>
+          </div>
     </div>
   );
 }

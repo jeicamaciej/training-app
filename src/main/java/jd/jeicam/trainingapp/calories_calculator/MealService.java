@@ -25,20 +25,19 @@ public class MealService {
     private final UserRepository userRepository;
     private final DayRepository dayRepository;
 
-    public Meal addMeal(@NotNull Meal meal){
+    public Meal addMeal(@NotNull Meal meal) {
         return mealRepository.save(meal);
     }
-
-
+    
     @Transactional
-    public List<Product> getAllProductsFromMeal(long mealId){
+    public List<Product> getAllProductsFromMeal(long mealId) {
         Meal meal = mealRepository.findById(mealId)
                 .orElseThrow(() -> new IllegalArgumentException("meal does not exist"));
         return productService.findAllByIdIn(meal.getProducts());
     }
 
     @Transactional
-    public Meal addEmptyMeal(Date date, String username){
+    public Meal addEmptyMeal(Date date, String username) {
         long userId = getIdFromUsername(username);
         Day day = dayRepository.findByDateAndUserId(date, userId).orElseThrow(IllegalArgumentException::new);
         User user = userRepository.findByUsernameOrEmail(username, username).orElseThrow(IllegalArgumentException::new);
@@ -56,7 +55,7 @@ public class MealService {
         return user.getId();
     }
 
-    public Optional<Meal> findById(Long id){
+    public Optional<Meal> findById(Long id) {
         return mealRepository.findById(id);
     }
 }

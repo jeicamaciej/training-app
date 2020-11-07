@@ -63,7 +63,6 @@ class ProductServiceTest {
         productService.addProductToMeal(productId, 10869L, "a");
         Meal meal = mealRepository.findById(10869L).orElseThrow(IllegalArgumentException::new);
         assertTrue(meal.getProducts().contains(productId));
-        System.out.println("\n\n" + meal.getProducts().get(0) + "\n\n");
     }
 
     @Test

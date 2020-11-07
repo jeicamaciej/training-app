@@ -17,6 +17,7 @@ import java.util.regex.Pattern;
 
 @Service
 @AllArgsConstructor
+@Transactional
 public class ProductService {
 
     private final ProductRepository productRepository;
@@ -63,26 +64,23 @@ public class ProductService {
                 .include(FATS);
     }
 
-    List<Product> findByProductNameCustom(String productName) {
+    public List<Product> findByProductNameCustom(String productName) {
         Query query = createMongoQuery(productName);
         setQueryFields(query);
         return mongoTemplate.find(query, Product.class);
     }
 
-    @Transactional
     public User addProductToUser(String username, String productId) {
         User user = userRepository.findByUsernameOrEmail(username, username).orElseThrow(IllegalArgumentException::new);
         user.getProducts().add(productId);
         return userRepository.save(user);
     }
 
-    @Transactional
     public List<Product> getUserProducts(String username) {
         User user = userRepository.findByUsernameOrEmail(username, username).orElseThrow(IllegalArgumentException::new);
         return productRepository.findAllByIdIn(user.getProducts());
     }
 
-    @Transactional
     public Meal addProductToMeal(String productId, long mealId, String username) {
         Meal meal = mealRepository.findById(mealId).orElseThrow(IllegalArgumentException::new);
         meal.getProducts().add(productId);
@@ -90,7 +88,6 @@ public class ProductService {
         return mealRepository.save(meal);
     }
 
-    @Transactional
     public List<Product> getProductFromMeal(long mealId){
         Meal meal = mealRepository.findById(mealId).orElseThrow(IllegalArgumentException::new);
         return findAllByIdIn(meal.getProducts());
