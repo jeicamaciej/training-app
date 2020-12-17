@@ -3,7 +3,6 @@ import { withRouter, Link } from "react-router-dom";
 
 class PageNotFound extends React.Component {
   render() {
-    console.log("a");
     return (
       <div>
         404

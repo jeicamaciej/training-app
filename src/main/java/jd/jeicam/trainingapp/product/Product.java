@@ -35,4 +35,8 @@ public class Product {
 
     @Field(name = "nutriments.fat_100g")
     String fats;
+
+    @Field(name = "rev")
+    String rev;
+
 }

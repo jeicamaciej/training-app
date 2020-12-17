@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonView;
 import jd.jeicam.trainingapp.day.Day;
 import jd.jeicam.trainingapp.user.User;
 import lombok.*;
-import org.hibernate.annotations.NaturalId;
 
 import javax.persistence.*;
 import java.util.List;
@@ -12,7 +11,7 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
-@EqualsAndHashCode(exclude="user")
+@EqualsAndHashCode(exclude = "user")
 @ToString(exclude = "user")
 @AllArgsConstructor
 @NoArgsConstructor
@@ -28,9 +27,7 @@ public class Meal {
 
     private int fats;
 
-    @Enumerated(EnumType.STRING)
-    @NaturalId
-    private MealType mealType;
+    private String mealName;
 
     @ManyToOne
     private Day day;

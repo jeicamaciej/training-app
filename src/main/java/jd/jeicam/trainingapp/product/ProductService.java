@@ -5,11 +5,16 @@ import jd.jeicam.trainingapp.calories_calculator.MealRepository;
 import jd.jeicam.trainingapp.user.User;
 import jd.jeicam.trainingapp.user.UserRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.data.repository.support.PageableExecutionUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 import java.util.Optional;
@@ -31,6 +36,7 @@ public class ProductService {
     private final static String PROTEINS = "nutriments.proteins_100g";
     private final static String FATS = "nutriments.fat_100g";
     private final static String BRANDS = "brands";
+    private final static String REV = "rev";
 
     public Optional<Product> findById(String id) {
         return productRepository.findById(id);
@@ -46,7 +52,8 @@ public class ProductService {
 
     private Query createMongoQuery(String productName) {
         return new Query().addCriteria(new Criteria()
-                .andOperator(Criteria.where(PRODUCT_NAME)
+                .andOperator(Criteria
+                                .where(PRODUCT_NAME)
                                 .regex(Pattern.compile(productName, Pattern.CASE_INSENSITIVE)),
                         Criteria.where(KCAL).ne(null),
                         Criteria.where(CARBS).ne(null),
@@ -61,7 +68,21 @@ public class ProductService {
                 .include(KCAL)
                 .include(CARBS)
                 .include(PROTEINS)
-                .include(FATS);
+                .include(FATS)
+                .include(REV);
+    }
+
+    public Page<Product> findByProductNameCustomWithPaging(String productName, @RequestParam int page, @RequestParam int size) {
+        Pageable pageable = PageRequest.of(page, size);
+        Query query = createMongoQuery(productName);
+        setQueryFields(query);
+        query.with(pageable);
+        List<Product> products = mongoTemplate.find(query, Product.class);
+        return PageableExecutionUtils.getPage(products, pageable, () -> mongoTemplate
+                .count(Query
+                        .of(query)
+                        .limit(-1)
+                        .skip(-1), Product.class));
     }
 
     public List<Product> findByProductNameCustom(String productName) {
@@ -88,7 +109,7 @@ public class ProductService {
         return mealRepository.save(meal);
     }
 
-    public List<Product> getProductFromMeal(long mealId){
+    public List<Product> getProductFromMeal(long mealId) {
         Meal meal = mealRepository.findById(mealId).orElseThrow(IllegalArgumentException::new);
         return findAllByIdIn(meal.getProducts());
     }

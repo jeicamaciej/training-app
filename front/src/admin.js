@@ -1,15 +1,14 @@
-import { render } from "react-dom";
 import React, { useState, useEffect } from "react";
-import { Route, Link, BrowserRouter as Router, Switch } from "react-router-dom";
+import { Link, BrowserRouter as Router, Switch } from "react-router-dom";
 import { withRouter } from "react-router-dom";
-import { Container, Card, Button, Form, Row, ListGroup } from "react-bootstrap";
+import { Card, ListGroup } from "react-bootstrap";
 import axios from "axios";
 import User from "./user";
 
 function Admin(props) {
   const [users, setUsers] = useState([]);
   const [isAuthenticated, setAuthenticated] = useState(false);
-  const [message, setMessage] = useState("not authorized");
+  //const [message, setMessage] = useState("not authorized");
   const [token, setToken] = useState(localStorage.getItem("token"));
 
   useEffect(() => {

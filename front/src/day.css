@@ -1,8 +1,16 @@
 .background {
-  background-color: #64498c;
+  background-color: #b7b7d3e1;
   height: 100vh;
   width: 100%;
   overflow-y: auto;
+  color: black;
+}
+
+.background table {
+  color: black;
+  width: 50%;
+  font-size: 12px;
+  margin: 25px auto;
 }
 
 .training-container {
@@ -60,7 +68,7 @@ li {
 }
 
 .add-set-button {
-  background-color: #64498c !important;
+  background-color: #242424b7 !important;
 }
 
 .add-set-button:focus {
@@ -110,13 +118,13 @@ ul {
 }
 
 .confirm-button {
-  background-color: #64498c !important;
+  background-color: #3a3a3a !important;
   /* margin-right: 1px !important; */
   margin-left: 1px;
 }
 
 .cancel-button {
-  background-color: #302e39 !important;
+  background-color: #3d3d3f !important;
   text-align: center !important;
   margin-left: 10px;
 }
@@ -133,13 +141,13 @@ ul {
 }
 
 .new-exercise-button {
-  background-color: #64498c !important;
+  background-color: #414141 !important;
   margin: 0 auto !important;
   display: block !important;
 }
 
 .add-exercise-button {
-  background-color: #64498c !important;
+  background-color: #31313183 !important;
   /* left: 100vh !important; */
 }
 

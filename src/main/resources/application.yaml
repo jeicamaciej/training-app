@@ -36,4 +36,3 @@ spring:
 app:
   jwtSecret: JWTSuperSecretKey
   jwtExpirationInMs: 864000000
-

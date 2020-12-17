@@ -10,17 +10,17 @@ import {
   Navbar,
   Nav,
   Row,
-  Col,
 } from "react-bootstrap";
 import "react-bootstrap/dist/react-bootstrap.min.js";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCalendarPlus } from "@fortawesome/free-solid-svg-icons";
 import { faCalendarMinus } from "@fortawesome/free-solid-svg-icons";
 import "./day.css";
-import Product from "./product";
-import Meal from "./meal";
+import MealContainer from "./mealContainer";
 
 function Day(props) {
+
+  const [id, setId] = useState(0);
   const [date, setDate] = useState(new Date());
   const [isDateChanged, setDateChanged] = useState(false);
   const [token, setToken] = useState(localStorage.getItem("token"));
@@ -29,7 +29,6 @@ function Day(props) {
   const [isUpdated, setUpdated] = useState(false);
   const [userRole, setUserRole] = useState([]);
   const [isUserAdmin, setUserAdmin] = useState(false);
-  const [isModalOpen, setIsModalOpen] = useState(false);
   let [dateChangeValue, setDateChangeValue] = useState(0);
 
   useEffect(() => {
@@ -183,7 +182,9 @@ function Day(props) {
         </Container>
       </div>
           <div>
-            <Meal/>
+            <MealContainer
+            date = {"2020-11-29"}
+            />
           </div>
     </div>
   );

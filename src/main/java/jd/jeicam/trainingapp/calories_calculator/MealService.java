@@ -58,4 +58,10 @@ public class MealService {
     public Optional<Meal> findById(Long id) {
         return mealRepository.findById(id);
     }
+
+    public List<Meal> getAllMealsByDate(Date date, String username){
+        User user = userRepository.findByUsernameOrEmail(username, username).orElseThrow(IllegalArgumentException::new);
+        Day day = dayRepository.findByDateAndUserId(date, user.getId()).orElseThrow(IllegalArgumentException::new);
+        return mealRepository.findAllByDayIdAndUserId(user.getId(), day.getId());
+    }
 }

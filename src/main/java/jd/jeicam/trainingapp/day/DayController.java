@@ -12,6 +12,7 @@ import java.util.List;
 @RestController
 @AllArgsConstructor
 @RequestMapping("/api/day")
+@CrossOrigin(origins = "*")
 public class DayController {
 
     private DayService dayService;
@@ -39,5 +40,4 @@ public class DayController {
     public ResponseEntity<Day> getByDayOrCreateNew(@PathVariable @DateTimeFormat(pattern = "yyyy-MM-dd")Date date, String username){
         return ResponseEntity.ok(dayService.getDayByDateOrCreateNew(date, username));
     }
-
 }

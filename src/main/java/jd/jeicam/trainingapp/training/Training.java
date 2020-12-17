@@ -20,7 +20,7 @@ public class Training {
 
     public interface JsonViews {
 
-        interface Get extends Exercise.JsonViews.Get{
+        interface Get extends Exercise.JsonViews.Get {
         }
 
         interface GetExtended extends Get, Exercise.JsonViews.Get, Day.JsonViews.Get, User.JsonViews.Get {
@@ -38,7 +38,7 @@ public class Training {
     private String desc;
 
     @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name =  "TRAININGAPP_TRAINING_EXERCISE",
+    @JoinTable(name = "TRAININGAPP_TRAINING_EXERCISE",
             joinColumns = @JoinColumn(name = "TRAINING_ID"),
             inverseJoinColumns = @JoinColumn(name = "EXERCISE_ID")
     )
