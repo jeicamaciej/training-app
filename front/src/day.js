@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { withRouter } from "react-router-dom";
 import Training from "./training";
+import AddMeal from "./addMeal";
 import "bootstrap/dist/css/bootstrap.min.css";
 import {
   Container,
@@ -32,6 +33,7 @@ function Day(props) {
   let [dateChangeValue, setDateChangeValue] = useState(0);
 
   useEffect(() => {
+    console.log(token);
     if (token === null) {
       props.history.push("/login");
     }
@@ -53,7 +55,8 @@ function Day(props) {
   }, [dateChangeValue]);
 
   function getUserRolesFromResponse(response) {
-    const roles = response.data.user.roles.map((r) => userRole.push(r.name));
+    const roles = response.data.user.roles.map(
+      (r) => userRole.push(r.name));
     setUserRole([...new Set([userRole])]);
   }
 
@@ -70,7 +73,7 @@ function Day(props) {
         },
       })
         .then((response) => {
-          console.log(response.data);
+          // console.log(response.data);
           setTraining(response.data.training);
           getUserRolesFromResponse(response);
           setTrainingPresent(true);
@@ -181,12 +184,15 @@ function Day(props) {
           </div>
         </Container>
       </div>
-          <div>
+      <div>
             <MealContainer
-            date = {"2020-11-29"}
+              date = {formatDate(0)}
             />
+            
           </div>
     </div>
   );
+
+
 }
 export default withRouter(Day);

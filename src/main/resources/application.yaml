@@ -5,6 +5,7 @@ spring:
       ddl-auto: update
     show-sql: true
 
+
   datasource:
     url: jdbc:postgresql://database-1.cvyhsoweumof.eu-central-1.rds.amazonaws.com/postgres
     username: postgres
@@ -36,3 +37,8 @@ spring:
 app:
   jwtSecret: JWTSuperSecretKey
   jwtExpirationInMs: 864000000
+
+logging:
+  level:
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type: TRACE

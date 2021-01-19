@@ -62,6 +62,14 @@ public class MealService {
     public List<Meal> getAllMealsByDate(Date date, String username){
         User user = userRepository.findByUsernameOrEmail(username, username).orElseThrow(IllegalArgumentException::new);
         Day day = dayRepository.findByDateAndUserId(date, user.getId()).orElseThrow(IllegalArgumentException::new);
-        return mealRepository.findAllByDayIdAndUserId(user.getId(), day.getId());
+
+        return mealRepository.findAllByDayIdAndUserId(day.getId(), user.getId());
+    }
+
+    public List<Meal> getMealByDayAndUser(Date date, String username){
+        User user = userRepository.findById(2L).orElseThrow(IllegalArgumentException::new);
+        Day day = dayRepository.findById(10915L).orElseThrow(IllegalArgumentException::new);
+
+        return mealRepository.findAllByDayIdAndUserId(10915L, 2L);
     }
 }

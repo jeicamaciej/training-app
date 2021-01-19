@@ -1,5 +1,6 @@
 package jd.jeicam.trainingapp.product;
 
+import com.fasterxml.jackson.annotation.JsonView;
 import jd.jeicam.trainingapp.calories_calculator.Meal;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -32,6 +33,7 @@ public class ProductController {
     }
 
     @PostMapping("{mealId}/add/{productId}")
+    @JsonView(Meal.JsonViews.Get.class)
     ResponseEntity<Meal> addProductToMeal(@PathVariable String productId, @PathVariable long mealId, String username){
         return ResponseEntity.ok(productService.addProductToMeal(productId, mealId, username));
     }

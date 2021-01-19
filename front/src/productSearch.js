@@ -79,6 +79,9 @@ const ProductSearch = (props) => {
                         pageOnChangeEvent={pageOnChangeEvent}
                         enableAddButton={true}
                         enablePaging={true}
+                        mealId = {props.mealId}
+                        updateMeal = {props.updateMeal}
+                        hideTable = {setResponsePresent}
                     />
                 )}
             </div>

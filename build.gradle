@@ -61,6 +61,8 @@ dependencies {
 	compile group: 'io.springfox', name: 'springfox-swagger-ui', version: '2.9.2'
 	// https://mvnrepository.com/artifact/com.mashape.unirest/unirest-java
 	compile group: 'com.mashape.unirest', name: 'unirest-java', version: '1.4.9'
+	// https://mvnrepository.com/artifact/org.slf4j/slf4j-api
+	compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.25'
 
 }
 

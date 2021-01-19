@@ -2,9 +2,11 @@ import React, {useEffect, useState} from "react";
 import Table from 'react-bootstrap/Table'
 import Product from "./product";
 import TablePaging from "./tablePaging";
-import tablePaging from "./tablePaging";
+import Pagination from '@material-ui/lab/Pagination';
 
-const ProductTable = (props) => (
+const ProductTable = (props) => {
+
+return (
 <div>
     <Table striped bordered hover>
         <thead>
@@ -29,6 +31,9 @@ const ProductTable = (props) => (
                         productProteins = {p.proteins}
                         productFats = {p.fats}
                         enableAddButton = {props.enableAddButton}
+                        mealId = {props.mealId}
+                        updateMeal = {props.updateMeal}
+                        hideTable = {props.hideTable}
                     />
             ))} 
         </tbody>
@@ -40,6 +45,7 @@ const ProductTable = (props) => (
             pageOnChangeEvent = {props.pageOnChangeEvent}
     />     )}
 </div>
-)   
+)
+}  
 
 export default ProductTable;

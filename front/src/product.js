@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from "react";
 import Table from 'react-bootstrap/Table'
 import ProductAddButton from "./productAddButton"
+import AddProduct from "./addProduct"
+import {Button, Form, InputGroup,} from "react-bootstrap";
 
 const Product = (props) => {
+    
     return (
         <tr>
             <td>{props.productName}</td>               
@@ -13,8 +16,11 @@ const Product = (props) => {
             <td>{props.productKcal}</td>
             <td>
                 {props.enableAddButton && (
-                    <ProductAddButton
+                    <AddProduct 
                         productId = {props.productId}
+                        mealId = {props.mealId}
+                        updateMeal = {props.updateMeal}
+                        hideTable = {props.hideTable}
                     />
                 )}
             </td>

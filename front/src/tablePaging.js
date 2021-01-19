@@ -22,12 +22,12 @@ function TablePaging (props) {
 
     return (
         <div className={classes.root}>
-            <Pagination count={props.totalPages} 
+            {/* <Pagination count={props.totalPages} 
             page={props.active} 
             onChange={props.pageOnChangeEvent}
             variant="outlined" 
             color="secondary"               
-            />
+            /> */}
         </div>
     )
 }

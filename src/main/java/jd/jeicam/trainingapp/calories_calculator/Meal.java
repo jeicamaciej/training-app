@@ -11,22 +11,32 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
-@EqualsAndHashCode(exclude = "user")
-@ToString(exclude = "user")
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "TRAININGAPP_MEAL")
 public class Meal {
+
+    public interface JsonViews{
+        interface Get {
+
+        }
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @JsonView(JsonViews.Get.class)
     private long id;
 
+    @JsonView(JsonViews.Get.class)
     private int proteins;
 
+    @JsonView(JsonViews.Get.class)
     private int carbs;
 
+    @JsonView(JsonViews.Get.class)
     private int fats;
 
+    @JsonView(JsonViews.Get.class)
     private String mealName;
 
     @ManyToOne
@@ -37,5 +47,6 @@ public class Meal {
     private User user;
 
     @ElementCollection
+    @JsonView(JsonViews.Get.class)
     private List<String> products;
 }
