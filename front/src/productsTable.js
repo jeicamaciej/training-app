@@ -8,7 +8,7 @@ const ProductTable = (props) => {
 
 return (
 <div>
-    <Table striped bordered hover>
+    <Table striped bordered hover variant="light" display="flex">
         <thead>
             <tr>
                 <th>Product Name</th>
@@ -17,7 +17,8 @@ return (
                 <th>Fats</th>
                 <th>Carbs</th>
                 <th>Calories</th>
-                <th></th>
+                {props.enableAddButton && (
+                <th></th> )}
             </tr>
         </thead>
         <tbody>
@@ -39,11 +40,13 @@ return (
         </tbody>
     </Table>
     {props.enablePaging && (
-    <TablePaging 
-            active = {props.active}
-            totalPages = {props.totalPages}
-            pageOnChangeEvent = {props.pageOnChangeEvent}
-    />     )}
+    <div className="paging">
+        <TablePaging 
+                active = {props.active}
+                totalPages = {props.totalPages}
+                pageOnChangeEvent = {props.pageOnChangeEvent}
+        />  
+    </div>)}
 </div>
 )
 }  

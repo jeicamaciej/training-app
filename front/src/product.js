@@ -14,16 +14,17 @@ const Product = (props) => {
             <td>{props.productFats}</td>   
             <td>{props.productCarbs}</td>
             <td>{props.productKcal}</td>
+            {props.enableAddButton && (
             <td>
-                {props.enableAddButton && (
+                
                     <AddProduct 
                         productId = {props.productId}
                         mealId = {props.mealId}
                         updateMeal = {props.updateMeal}
                         hideTable = {props.hideTable}
                     />
-                )}
-            </td>
+                
+            </td>)}
         </tr>
     )
 }

@@ -1,10 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, {useEffect, useState} from "react";
 import axios from "axios";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMinusSquare } from "@fortawesome/free-solid-svg-icons";
-import { Button, CardColumns } from "react-bootstrap";
-import { Table, Card, CardGroup } from "react-bootstrap";
+import {Button} from "react-bootstrap";
 import "./day.css";
+import styled from "styled-components";
 
 function Set(props) {
   const [id, setId] = useState(0);
@@ -44,23 +42,60 @@ function Set(props) {
   };
 
   return (
-    <div>
-      <CardColumns>
-        <Card bsPrefix="medium-exercise-card">
-          <li>
-            <CardGroup>
-              <Card bg="secondary">
-                {weight + " kg"}
-                {" x "} {reps}
-              </Card>
-              <Button bsPrefix="remove-button" onClick={remove}>
-                <FontAwesomeIcon icon={faMinusSquare} />
-              </Button>
-            </CardGroup>
-          </li>
-        </Card>
-      </CardColumns>
-    </div>
+    // <div>
+    //   <CardColumns>
+    //     <Card bsPrefix="medium-exercise-card">
+    //       <li>
+    //         <CardGroup>
+    //           <Card bg="secondary">
+    //             {weight + " kg"}
+    //             {" x "} {reps}
+    //           </Card>
+    //           <Button onClick={remove}>
+    //             {/* <FontAwesomeIcon icon={faMinusSquare} /> */}
+    //             remove
+    //           </Button>
+    //         </CardGroup>
+    //       </li>
+    //     </Card>
+    //   </CardColumns>
+    // </div>
+    <StyledRow>
+
+      <StyledWeightColumn>
+        {weight + " kg"}
+      </StyledWeightColumn>
+
+      <StyledRepsColumn>
+        {reps}
+      </StyledRepsColumn>
+      
+
+      <StyledButtonColumn>
+        <Button onClick={remove}>
+          remove
+        </Button>
+      </StyledButtonColumn>
+
+    </StyledRow>
   );
 }
+
+const StyledRow = styled.tr`
+  // border: 1px solid grey;
+`;
+
+const StyledWeightColumn = styled.td`
+  width: 200px;
+`;
+
+const StyledRepsColumn = styled.td`
+width: 200px;
+
+`;
+
+const StyledButtonColumn = styled.td`
+  width: 100px;
+`;
+
 export default Set;

@@ -1,9 +1,11 @@
 .background {
-  background-color: #b7b7d3e1;
+  background-color: #a5a5a5;
   height: 100vh;
   width: 100%;
   overflow-y: auto;
   color: black;
+  -webkit-font-smoothing: antialiased !important;
+  text-shadow: 1px 1px 1px rgba(0,0,0,0.004) !important;
 }
 
 .background table {
@@ -26,8 +28,10 @@
 }
 
 .day-switch-buttons {
-  display: inline-flex !important;
-  margin: auto !important;
+  /*display: inline-flex !important;*/
+  /*margin: auto !important;*/
+  /*justify-content: center;*/
+  /*align-items: center;*/
 }
 
 ul,
@@ -37,7 +41,7 @@ li {
 }
 
 .change-day-button {
-  background-color: #302e39 !important;
+  /*background-color: #302e39 !important;*/
 }
 
 .nav-items-padding {
@@ -52,15 +56,19 @@ li {
 }
 
 .center-exercise-card {
-  display: flex !important;
-  justify-content: center;
+  /* display: flex !important; */
+  /* justify-content: center; */
 }
 
 .exerciseCard {
   padding: 10px;
-  background-color: #343a40;
-  width: 30vh;
+  background-color: white;
+  align-items: center;
   box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.2);
+  min-width: 450px;
+  margin: 10px;
+  border-radius: 4px;
+  -webkit-font-smoothing: antialiased;
 }
 
 .set-modal {
@@ -68,13 +76,13 @@ li {
 }
 
 .add-set-button {
-  background-color: #242424b7 !important;
+  /* background-color: #242424b7 !important; */
 }
 
 .add-set-button:focus {
-  outline: none !important;
+  /* outline: none !important;
   -webkit-box-shadow: none !important;
-  box-shadow: none !important;
+  box-shadow: none !important; */
 }
 
 .form {
@@ -82,22 +90,22 @@ li {
 }
 
 .remove-button {
-  background-color: #343a40;
-  color: white;
-  font-size: 25px;
-  display: inline-flex;
-  border: none;
+  /* background-color: black;
+  color: white; */
+  /* font-size: 25px; */
+  /* display: inline-flex; */
+  /* border: none; */
 }
 
 .remove-button:focus {
-  background-color: #343a40;
+  /* background-color: #343a40;
   border: 0;
   outline: 0;
-  transform: scale(0.9);
+  transform: scale(0.9); */
 }
 
 .remove-button:active {
-  border: 0;
+  /* border: 0; */
 }
 
 ul {
@@ -109,28 +117,28 @@ ul {
 }
 
 .add-set-weight {
-  width: 115% !important;
+  /* width: 115% !important; */
 }
 
 .add-set-reps {
-  width: 115% !important;
+  /* width: 115% !important; */
   margin-left: 5px;
 }
 
 .confirm-button {
-  background-color: #3a3a3a !important;
+  /* background-color: #3a3a3a !important; */
   /* margin-right: 1px !important; */
-  margin-left: 1px;
+  /* margin-left: 1px; */
 }
 
 .cancel-button {
-  background-color: #3d3d3f !important;
-  text-align: center !important;
-  margin-left: 10px;
+  /* background-color: #3d3d3f !important; */
+  /* text-align: center !important; */
+  /* margin-left: 10px; */
 }
 
 .cancel-confirm-group {
-  margin-left: 10px;
+  /* margin-left: 10px; */
 }
 
 .new-exercise-form {
@@ -141,34 +149,34 @@ ul {
 }
 
 .new-exercise-button {
-  background-color: #414141 !important;
+  /*background-color: #414141 !important;*/
   margin: 0 auto !important;
   display: block !important;
 }
 
 .add-exercise-button {
-  background-color: #31313183 !important;
+  /*background-color: #31313183 !important;*/
   /* left: 100vh !important; */
 }
 
 .add-exercise-button:focus {
-  box-shadow: none !important;
+  /*box-shadow: none !important;*/
 }
 
 .add-exercise-button:hover {
-  transform: scale(1.02);
-  border-color: white;
+  /*transform: scale(1.02);*/
+  /*border-color: white;*/
 }
 
 .medium-exercise-card {
   width: 28vh;
-  background-color: #343a40;
+  background-color: #bec5cc;
   text-align: center;
   border: 1px;
 }
 
 .smaller-exercise-card {
-  background-color: #343a40;
+  /* background-color: #343a40; */
 }
 
 body {
@@ -217,4 +225,44 @@ body {
   justify-content: center !important;
   text-align: center;
   margin: auto !important;
+}
+
+#search-div{
+  width: 50%;
+  margin: auto;
+  padding-top: 10px;  
+}
+
+.search-product-button-div{
+  margin-left: 5px;
+}
+/* 
+
+.search-product-button-div:focus, .search-product-button-div:active {
+  transform: scale(0.95);
+  outline: none !important;
+  outline-offset: none !important;
+  box-shadow: none !important;
+} */
+
+.newProduct{
+  margin: 0 auto;
+}
+
+.paging{
+  align-items: center;
+  display: flex;
+}
+
+.meal{
+  border-color: white;
+}
+
+#mealcard{
+  background-color: black;
+}
+
+.makeStyles-root-2{
+  position: relative;
+  margin: 0 auto;
 }

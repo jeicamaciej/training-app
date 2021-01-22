@@ -10,6 +10,11 @@ import {
   ButtonGroup,
   Container,
 } from "react-bootstrap";
+import styled from "styled-components";
+
+const StyledDiv = styled.div`
+  margin-top: 10px;  
+`;
 
 function ExerciseModal(props) {
   const [name, setName] = useState("");
@@ -35,13 +40,13 @@ function ExerciseModal(props) {
   }, [isNameConfirmed]);
 
   return (
-    <div>
+    <StyledDiv>
       {!isModalOpen && (
         <Button
           onClick={() => setIsModalOpen(!isModalOpen)}
           className="new-exercise-button"
-          size="sm"
-          variant="secondary"
+          // size="sm"
+          // variant="secondary"
         >
           Add new exericse
         </Button>
@@ -53,7 +58,7 @@ function ExerciseModal(props) {
               <Form>
                 <InputGroup className="new-exercise-form">
                   <Form.Control
-                    size="sm"
+                    // size="sm"
                     placeholder="new exercise"
                     type="text"
                     onInput={(e) => {
@@ -66,8 +71,8 @@ function ExerciseModal(props) {
                       <Button
                         type="submit"
                         className="add-exercise-button"
-                        size="sm"
-                        variant="secondary"
+                        // size="sm"
+                        // variant="secondary"
                         onClick={(e) => {
                           setIsModalOpen(!isModalOpen);
                           setNameConfirmed(!isNameConfirmed);
@@ -79,8 +84,8 @@ function ExerciseModal(props) {
                       <Button
                         type="submit"
                         className="add-exercise-button"
-                        size="sm"
-                        variant="secondary"
+                        // size="sm"
+                        // variant="secondary"
                         onClick={(e) => {
                           setIsModalOpen(!isModalOpen);
                           e.preventDefault();
@@ -96,7 +101,7 @@ function ExerciseModal(props) {
           </div>
         </div>
       )}
-    </div>
+    </StyledDiv>
   );
 }
 

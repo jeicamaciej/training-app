@@ -1,6 +1,8 @@
-import React, {useEffect, useRef, useState} from "react";
+import React, {useState} from "react";
 import axios from "axios";
-import {Button, Form, InputGroup,} from "react-bootstrap";
+import {Button,} from "react-bootstrap";
+import styled from "styled-components";
+
 const AddMeal = (props) => {
 
     const [token, setToken] = useState(localStorage.getItem("token").toString());
@@ -21,11 +23,26 @@ const AddMeal = (props) => {
     }
 
     return (
-        <div>
-            <Button onClick={() => {onClickAddMeal();}}>
-                    add meal
-            </Button>
-        </div>
+        <StyledAddDiv>
+            <StyledAddButton onClick={() => {
+                onClickAddMeal();
+            }}>
+                Add meal
+            </StyledAddButton>
+        </StyledAddDiv>
     )
 }
+
+const StyledAddButton = styled(Button)`
+  //margin: 0 auto;
+  //margin-top: 1px;
+  //padding-top: 10px;
+`;
+
+const StyledAddDiv = styled.div`
+  justify-content: center;
+  align-items: center;
+  display: flex;
+`;
+
 export default AddMeal;

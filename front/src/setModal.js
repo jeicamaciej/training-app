@@ -37,10 +37,10 @@ function SetModal(props) {
           <Button
             className="add-set-button"
             onClick={() => setIsModalOpen(!isModalOpen)}
-            variant={"secondary"}
-            size="sm"
+            // variant={"secondary"}
+            // size="md"
           >
-            add set
+            Add set
           </Button>
         )}
         {isModalOpen && (
@@ -50,7 +50,7 @@ function SetModal(props) {
                 <Col>
                   <Form.Control
                     className="add-set-weight"
-                    size="sm"
+                    size="md"
                     placeholder="weight"
                     type="text"
                     onChange={(e) => setWeight(e.target.value)}
@@ -59,7 +59,7 @@ function SetModal(props) {
                 <Col>
                   <Form.Control
                     className="add-set-reps"
-                    size="sm"
+                    size="md"
                     placeholder="reps"
                     type="text"
                     onChange={(e) => setReps(e.target.value)}
@@ -68,8 +68,8 @@ function SetModal(props) {
                 <Col>
                   <ButtonGroup className="cancel-confirm-group">
                     <Button
-                      variant="secondary"
-                      size="sm"
+                      // variant="secondary"
+                      // size="sm"
                       className="confirm-button"
                       onClick={() => {
                         setIsModalOpen(!isModalOpen);
@@ -77,19 +77,19 @@ function SetModal(props) {
                       }}
                     >
                       <div className="font-size">
-                        <FontAwesomeIcon icon={faPlusSquare} />
-                        {/* confirm */}
+                        {/* <FontAwesomeIcon icon={faPlusSquare} /> */}
+                        confirm
                       </div>
                     </Button>
                     <Button
-                      variant="secondary"
+                      // variant="secondary"
                       className="cancel-button"
-                      size="sm"
+                      // size="sm"
                       //className="ml-2"
                       onClick={() => setIsModalOpen(!isModalOpen)}
                     >
-                      <FontAwesomeIcon icon={faWindowClose} />
-                      {/* cancel */}
+                      {/* <FontAwesomeIcon icon={faWindowClose} /> */}
+                      cancel
                     </Button>
                   </ButtonGroup>
                 </Col>

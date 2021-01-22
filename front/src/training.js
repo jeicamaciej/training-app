@@ -38,14 +38,11 @@ function Training(props) {
 
   return (
     <div>
-      <div>
         <div>
           {isResponsePresent && (
-            <ul>
+            <div>
               {exercises.map((e) => (
-                <div key={e.id}>
-                  <Exercise
-                    key
+                  <Exercise key={e.id}
                     exerciseId={e.id}
                     exerciseName={e.name}
                     exerciseDesc={e.desc}
@@ -53,9 +50,8 @@ function Training(props) {
                     trainingId={id}
                     exerciseHandler={exerciseHandler}
                   />
-                </div>
               ))}
-            </ul>
+            </div>
           )}
         </div>
         <div>
@@ -66,7 +62,6 @@ function Training(props) {
           />
         </div>
       </div>
-    </div>
   );
 }
 

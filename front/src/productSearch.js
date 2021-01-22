@@ -3,6 +3,7 @@ import axios from "axios";
 // import { FormControl } from '@material-ui/core';
 import {Button, Form, InputGroup,} from "react-bootstrap";
 import ProductTable from "./productsTable"
+import styled from "styled-components";
 
 const ProductSearch = (props) => {
     const [isSearchPressed, setSearchPressed] = useState(false);
@@ -49,10 +50,10 @@ const ProductSearch = (props) => {
 
     return (
         <div>
-            <div>
+            <div id="search-div">
                 <InputGroup className="newProduct">
                     <Form.Control
-                        size="sm"
+                        size="md"
                         placeholder="product name"
                         type="text"
                         onInput={(e) => setProductName(e.target.value)}
@@ -60,17 +61,18 @@ const ProductSearch = (props) => {
                             if (e.keyCode === 13) setSearchPressed(!isSearchPressed)
                         }}
                     />
+                    <Button
+                    className = "search-product-button-div"
+                    onClick={() => {
+                        setSearchPressed(!isSearchPressed);
+                        console.log(productName)
+                    }}
+                    >
+                        search
+                    </Button>            
                 </InputGroup>
             </div>
-            <Button
-                onClick={() => {
-                    setSearchPressed(!isSearchPressed);
-                    console.log(productName)
-                }}
-            >
-                search
-            </Button>
-            <div>
+            <StyledSearchDiv>
                 {isResponsePresent && (
                     <ProductTable
                         products={products}
@@ -84,8 +86,15 @@ const ProductSearch = (props) => {
                         hideTable = {setResponsePresent}
                     />
                 )}
-            </div>
+            </StyledSearchDiv>
         </div>
     )
 }
+
+const StyledSearchDiv = styled.div`
+  background-color: #F0F0F1;
+  margin: 10px;
+  box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.2);
+`;
+
 export default ProductSearch;

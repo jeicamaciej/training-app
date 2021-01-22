@@ -3,21 +3,23 @@ import Table from 'react-bootstrap/Table'
 import Product from "./product";
 import ProductSearch from "./productSearch";
 import ProductTable from "./productsTable";
-import React, { useState, useEffect } from "react";
+import React, {useState, useEffect} from "react";
 import Meal from "./meal.js"
 import AddMeal from "./addMeal";
+import styled from "styled-components";
+
 //  TODO: ADD MEAL CONTAINER FOR MEALCONTAINER xD + RENAME
 
-function MealContainer(props){
+function MealContainer(props) {
     const [id, setId] = useState(0);
     const [products, setProducts] = useState([]);
     const [isProductListUpdated, setProductListUpdated] = useState(false);
-    
+
     const [token, setToken] = useState(localStorage.getItem("token").toString());
     const [meals, setMeals] = useState([]);
     const [viewState, setViewState] = useState(0); // 0 = loading | 1 = success | 2 = error 
     const [date, setDate] = useState("");
-    
+
     useEffect(() => {
         Axios({
             method: "get",
@@ -26,18 +28,18 @@ function MealContainer(props){
                 "Access-Control-Allow-Origin": "*",
                 "Content-type": "Application/json",
                 Authorization: `Bearer ${token}`,
-            },    
+            },
         }).then((response) => {
             console.log(response.data)
-            setMeals(response.data);   
+            setMeals(response.data);
             setViewState(1);
             setDate(props.date)
         });
-    },[isProductListUpdated, date])
+    }, [isProductListUpdated, date])
 
     useEffect(() => {
         setDate(props.date);
-    },[props.date])
+    }, [props.date])
 
     // const updateMeal = (mealIndex, updatedMeal) => {
     //     setMeals(
@@ -50,30 +52,35 @@ function MealContainer(props){
     // }
 
     const updateMeal = () => {
-        setProductListUpdated(!isProductListUpdated);    
+        setProductListUpdated(!isProductListUpdated);
     }
 
     return (
-        <div>
-            <div>
-                {
+        <StyledAddMeal>
+            {
                 meals.map((m) => (
-                    <Meal key = {m.id}
-                        name = {"test"}
-                        products = {m.products}
-                        id = {m.id}
-                        updateMeal = {updateMeal}
-                    /> 
-                )) 
-                }
-            </div>
-                <div>
-                    <AddMeal
-                        date = {props.date}
-                        updateMeal = {updateMeal}
+                    <Meal key={m.id}
+                          name={"test"}
+                          products={m.products}
+                          id={m.id}
+                          updateMeal={updateMeal}
                     />
-            </div>
-        </div>
+                ))
+            }
+            <AddMeal
+                date={props.date}
+                updateMeal={updateMeal}
+            />
+        </StyledAddMeal>
     )
 }
+
+
+const StyledAddMeal = styled.div`
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    
+`;
+
 export default MealContainer;       
